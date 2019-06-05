@@ -1,0 +1,18 @@
+﻿using Photon.Pun;
+using UnityEngine;
+
+public class Ship : MonoBehaviourPun
+{
+    public GameObject shipCamera;
+
+    public GameObject spriteMe;
+
+    public GameObject spriteEnemy;
+    
+    public void Start()
+    {
+        shipCamera.SetActive(photonView.IsMine);
+        spriteMe.SetActive(photonView.IsMine);
+        spriteEnemy.SetActive(!photonView.IsMine);
+    }
+}

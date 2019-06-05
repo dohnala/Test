@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviourPun
 {
-    [SerializeField] private float speed = 5;
+    public float speed = 5;
 
     private Rigidbody2D rb2d;
 
@@ -17,8 +17,7 @@ public class ShipController : MonoBehaviourPun
         if (photonView.IsMine)
         {
             var direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-            rb2d.AddForce(direction * speed);
+            rb2d.AddForce(speed * direction);
         }
     }
 }
