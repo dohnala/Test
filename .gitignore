@@ -11,6 +11,8 @@
 /[Mm]emoryCaptures/
 /Test.app/
 
+/Packages/manifest.json
+
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
 
