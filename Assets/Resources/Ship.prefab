@@ -109,7 +109,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 533}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -317,7 +317,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &104
 GameObject:
   m_ObjectHideFlags: 0
