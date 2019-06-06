@@ -20,9 +20,18 @@ public class FireRockets : MonoBehaviourPun
     [PunRPC]
     public void FireBullets()
     {
+        var ownerVelocity = gameObject.GetComponent<Rigidbody2D>().velocity;
+        
         foreach (var spawnPoint in spawnPoints)
         {
-            Instantiate(rocketPrefab, spawnPoint.position, spawnPoint.rotation);
+            var rocket = Instantiate(rocketPrefab, spawnPoint.position, spawnPoint.rotation);
+
+            Debug.Log("Owner velocity " + ownerVelocity);
+            
+            // rocket should start with the same velocity as owner
+            rocket.GetComponent<Rigidbody2D>().velocity += ownerVelocity;
+            
+            Debug.Log("Rocket velocity " + rocket.GetComponent<Rigidbody2D>().velocity);
         }    
     }
 }

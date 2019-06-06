@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    public float speed = 0.1f;
-    public float duration = 1;
+    public float speed = 5;
+    public float duration = 2;
 
     public void Start()
     {
-        Destroy(gameObject, duration);
-    }
+        var direction = transform.up;
+        
+        GetComponent<Rigidbody2D>().velocity += speed * new Vector2(direction.x, direction.y);
 
-    public void FixedUpdate()
-    {
-        transform.Translate(0, speed, 0, Space.Self);
+        Debug.Log("Rocket velocity " + GetComponent<Rigidbody2D>().velocity);
+        
+        Destroy(gameObject, duration);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
