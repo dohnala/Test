@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviourPun
 {
-    public float speed = 1;
-    public float drag = 0.95f;
-
     public Transform[] leftThrusters;
     public Transform[] rightThrusters;
     public Transform[] frontThrusters;
@@ -14,9 +11,6 @@ public class ShipController : MonoBehaviourPun
     public Transform[] engines;
 
     private Rigidbody2D _rb2d;
-    
-    private float _angle;
-    private float _acceleration;
 
     public void Start()
     {
@@ -27,8 +21,8 @@ public class ShipController : MonoBehaviourPun
     {
         if (!photonView.IsMine) return;
 
-        float forwardBackwardThrust = Input.GetAxis("Vertical");
-        float leftRightThrust = Input.GetAxis("Horizontal");
+        var forwardBackwardThrust = Input.GetAxis("Vertical");
+        var leftRightThrust = Input.GetAxis("Horizontal");
 
         if (leftRightThrust < 0)
         {
@@ -50,14 +44,14 @@ public class ShipController : MonoBehaviourPun
 
     private void ApplyEngines()
     {
-        float forwardThrust = Input.GetAxis("Vertical");
+        var forwardThrust = Input.GetAxis("Vertical");
         
-        foreach (var engine in engines)
+        if (forwardThrust > 0)
         {
-            if (forwardThrust > 0)
+            foreach (var engine in engines)
             {
-                Vector2 enginePos = new Vector2(engine.position.x, engine.transform.position.y);
-                _rb2d.AddForceAtPosition(transform.up * Mathf.Abs(forwardThrust) * 2, enginePos);
+                Vector2 enginePos = new Vector2(engine.position.x, engine.transform.position.y); 
+                _rb2d.AddForceAtPosition(Mathf.Abs(forwardThrust) * 2 * transform.up, enginePos);
             }
         }
     }
