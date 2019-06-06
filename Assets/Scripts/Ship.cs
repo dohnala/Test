@@ -15,4 +15,10 @@ public class Ship : MonoBehaviourPun
         spriteMe.SetActive(photonView.IsMine);
         spriteEnemy.SetActive(!photonView.IsMine);
     }
+
+    public void Update()
+    {
+        // do not rotate camera
+        shipCamera.transform.eulerAngles = Vector3.zero;
+    }
 }
