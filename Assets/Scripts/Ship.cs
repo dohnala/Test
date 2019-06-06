@@ -8,11 +8,17 @@ public class Ship : MonoBehaviourPun
     public GameObject spriteMe;
 
     public GameObject spriteEnemy;
-    
+
     public void Start()
     {
         shipCamera.SetActive(photonView.IsMine);
         spriteMe.SetActive(photonView.IsMine);
         spriteEnemy.SetActive(!photonView.IsMine);
+    }
+
+    public void LateUpdate()
+    {
+        // do not rotate camera
+        shipCamera.transform.eulerAngles = Vector3.zero;
     }
 }
