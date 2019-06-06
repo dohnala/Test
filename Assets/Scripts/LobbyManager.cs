@@ -23,15 +23,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsConnected)
         {
             loadingScreen.SetActive(false);
-            lobbyScreen.SetActive(true);    
+            lobbyScreen.SetActive(true);
             joinButton.enabled = false;
         }
         else
         {
             loadingScreen.SetActive(true);
             lobbyScreen.SetActive(false);
-            
-            PhotonNetwork.ConnectUsingSettings();    
+
+            PhotonNetwork.ConnectUsingSettings();
         }
     }
 
