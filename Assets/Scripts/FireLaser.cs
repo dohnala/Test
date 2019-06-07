@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
 
 public class FireLaser : MonoBehaviourPun
@@ -32,7 +30,7 @@ public class FireLaser : MonoBehaviourPun
             laser.GetComponent<Laser>().SpawnPoint = spawnPoint;
             laser.GetComponent<Laser>().CollisionEffect = collisionEffect;
             laser.GetComponent<Laser>().Owner = gameObject;
-            
+
             Destroy(laser, duration);
         }
     }

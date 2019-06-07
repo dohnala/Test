@@ -1,59 +1,56 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    private LineRenderer lr;
-    public Transform SpawnPoint{ private get; set; }
-    
-    public GameObject Owner { private get; set; }
-    
-    public GameObject CollisionEffect { private get; set; }
-
     public float maxDistance;
     public float laserFireDuration;
 
-    private Vector2 previousEffectPoint;
-    
-    void Start()
+    public Transform SpawnPoint { private get; set; }
+
+    public GameObject Owner { private get; set; }
+
+    public GameObject CollisionEffect { private get; set; }
+
+    private LineRenderer _lineRenderer;
+
+    private Vector2 _previousEffectPoint;
+
+    public void Start()
     {
-        lr = GetComponent<LineRenderer>();
+        _lineRenderer = GetComponent<LineRenderer>();
     }
 
-    void Update()
+    public void Update()
     {
-        var position = SpawnPoint.position;
-        var position2d = new Vector2(position.x, position.y);
-        var up = SpawnPoint.up;
+        var cachedSpawnPosition = SpawnPoint.position;
+        var start = new Vector2(cachedSpawnPosition.x, cachedSpawnPosition.y);
+        var direction = SpawnPoint.up;
 
-        lr.SetPosition(0, position);
+        _lineRenderer.SetPosition(0, cachedSpawnPosition);
 
-        RaycastHit2D hit = Physics2D.Raycast(position2d, up, maxDistance);
-        
+        var hit = Physics2D.Raycast(start, direction, maxDistance);
+
         if (hit.collider != null)
         {
-            lr.SetPosition(1, hit.point);
+            _lineRenderer.SetPosition(1, hit.point);
 
-            var distance = Vector2.Distance(hit.point, previousEffectPoint);
-            
+            var distance = Vector2.Distance(hit.point, _previousEffectPoint);
+
             // apply effect only when distance is small
             if (distance > 0.1f)
             {
                 // effect should be rotated towards ship
                 var rotation = Owner.transform.rotation * Quaternion.Euler(Vector3.up * 180);
-                GameObject fireEffect = Instantiate(CollisionEffect, hit.point, rotation);
-                Destroy(fireEffect, laserFireDuration);
-                
-                previousEffectPoint = hit.point;
-            }
+                var fireEffect = Instantiate(CollisionEffect, hit.point, rotation);
 
+                Destroy(fireEffect, laserFireDuration);
+
+                _previousEffectPoint = hit.point;
+            }
         }
         else
         {
-            lr.SetPosition(1, position + (up * maxDistance));
+            _lineRenderer.SetPosition(1, cachedSpawnPosition + direction * maxDistance);
         }
-        
     }
-    
 }

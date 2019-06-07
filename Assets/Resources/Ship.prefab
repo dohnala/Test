@@ -189,7 +189,6 @@ MonoBehaviour:
     type: 3}
   spawnPoints:
   - {fileID: 3602319663387463733}
-  - {fileID: 0}
 --- !u!114 &3008155031429885666
 MonoBehaviour:
   m_ObjectHideFlags: 0
