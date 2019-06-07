@@ -1,16 +1,19 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
 public class ShipController : MonoBehaviourPun
 {
-    public float speed = 1;
-    public float drag = 0.95f;
-    
+    public Transform[] leftThrusters;
+    public Transform[] rightThrusters;
+    public Transform[] frontThrusters;
+
+    public Transform[] engines;
+
     private Rigidbody2D _rb2d;
-    
-    private float _angle;
-    private float _acceleration;
+
+    public float thrustersAcceleration = 2;
+    public float enginesAcceleration = 5;
 
     public void Start()
     {
@@ -20,31 +23,39 @@ public class ShipController : MonoBehaviourPun
     public void FixedUpdate()
     {
         if (!photonView.IsMine) return;
-        
-        var cachedTransform = transform;
-            
-        //turn left or right
-        _angle -= Input.GetAxis("Horizontal");
 
-        // change object rotation
-        cachedTransform.eulerAngles = new Vector3(0, 0, _angle);
+        var forwardBackwardThrust = Input.GetAxis("Vertical");
+        var leftRightThrust = Input.GetAxis("Horizontal");
 
-        var cachedEulerAngles = cachedTransform.eulerAngles;
-            
-        // calculate direction from actual ship rotation
-        var direction = new Vector2(
-            -Mathf.Sin(cachedEulerAngles.z * Mathf.Deg2Rad),
-            Mathf.Cos(cachedEulerAngles.z * Mathf.Deg2Rad));
+        if (leftRightThrust < 0)
+        {
+            ApplyThrusters(leftThrusters, leftRightThrust, transform.right, thrustersAcceleration);
+        }
 
-        // accelerate or decelerate
-        _acceleration -= -Input.GetAxis("Vertical") * speed;
-        _acceleration = Math.Max(0, _acceleration);
+        if (leftRightThrust > 0)
+        {
+            ApplyThrusters(rightThrusters, leftRightThrust, transform.right, thrustersAcceleration);
+        }
 
-        // move ship
-        _rb2d.AddForce(_acceleration * direction);
+        if (forwardBackwardThrust < 0)
+        {
+            ApplyThrusters(frontThrusters, forwardBackwardThrust, transform.up, thrustersAcceleration);
+        }
 
-        //slowing down when no force to rb2d
-        _rb2d.velocity *= drag;
-        _acceleration *= drag;
+        if (forwardBackwardThrust > 0)
+        {
+            ApplyThrusters(engines, forwardBackwardThrust, transform.up, enginesAcceleration);
+        }
+    }
+
+    private void ApplyThrusters(IEnumerable<Transform> thrusters, float thrust, Vector3 direction, float acceleration)
+    {
+        foreach (var thruster in thrusters)
+        {
+            var cachedThrusterPos = thruster.position;
+
+            _rb2d.AddForceAtPosition(acceleration * thrust * direction,
+                new Vector2(cachedThrusterPos.x, cachedThrusterPos.y));
+        }
     }
 }
