@@ -169,6 +169,8 @@ MonoBehaviour:
   engines:
   - {fileID: 3222429254187825510}
   - {fileID: 5464210030463413796}
+  thrustersAcceleration: 2
+  enginesAcceleration: 5
 --- !u!114 &4137142572161050304
 MonoBehaviour:
   m_ObjectHideFlags: 0
