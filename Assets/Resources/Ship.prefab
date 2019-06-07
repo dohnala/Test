@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4961361380739904587}
   - component: {fileID: 538}
   - component: {fileID: 4137142572161050304}
+  - component: {fileID: 3008155031429885666}
   m_Layer: 8
   m_Name: Ship
   m_TagString: Untagged
@@ -40,6 +41,7 @@ Transform:
   - {fileID: 5385323214384120864}
   - {fileID: 5453119028007740151}
   - {fileID: 8009120417436923257}
+  - {fileID: 1856375272227419200}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -187,7 +189,25 @@ MonoBehaviour:
     type: 3}
   spawnPoints:
   - {fileID: 3602319663387463733}
-  - {fileID: 35278699856617121}
+--- !u!114 &3008155031429885666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e019a673ea5f3764a8e7d8b5b5c22308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserPrefab: {fileID: 4771522884386781285, guid: afb8e0b6e4ec1bb40aa99991056a27a8,
+    type: 3}
+  collisionEffect: {fileID: 2519212218373330148, guid: 2db99e7df726ed24ab7432ba3ae3d1c6,
+    type: 3}
+  spawnPoints:
+  - {fileID: 445099007927592577}
+  duration: 2
 --- !u!1 &102
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,9 +331,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -486,7 +507,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3602319663387463733}
-  - {fileID: 35278699856617121}
   m_Father: {fileID: 248}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -578,15 +598,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 35278699856617121}
+  - component: {fileID: 445099007927592577}
   m_Layer: 8
-  m_Name: 2
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &35278699856617121
+--- !u!4 &445099007927592577
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -594,11 +614,42 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5122361774457922891}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.334, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0.337, y: 0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5385323214384120864}
-  m_RootOrder: 1
+  m_Father: {fileID: 1856375272227419200}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5165586756046711915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856375272227419200}
+  m_Layer: 8
+  m_Name: LaserSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1856375272227419200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5165586756046711915}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 445099007927592577}
+  m_Father: {fileID: 248}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5549977922610421347
 GameObject:
