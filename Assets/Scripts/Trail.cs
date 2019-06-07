@@ -7,6 +7,7 @@ public class Trail : MonoBehaviour
     public Color colorEnd;
     public float widthStart;
     public float widthEnd;
+    public float randomPlace;
     public int fragments = 20;
 
     private LineRenderer _mLine;
@@ -14,7 +15,7 @@ public class Trail : MonoBehaviour
     public void Start()
     {
         _mLine = gameObject.AddComponent<LineRenderer>();
-        _mLine.name = "asd" + Random.Range(0, 444444);
+        _mLine.name = "trail";
         _mLine.material = new Material(Shader.Find("Sprites/Default"));
         _mLine.startColor = colorEnd;
         _mLine.endColor = colorStart;
@@ -35,7 +36,9 @@ public class Trail : MonoBehaviour
         for (var i = 0; i < _mLine.positionCount - 1; i++)
         {
             _mLine.SetPosition(i, _mLine.GetPosition(i + 1));
-            _mLine.SetPosition(_mLine.positionCount - 1, v3NewPoint);
+            _mLine.SetPosition(_mLine.positionCount - 1,
+                v3NewPoint + new Vector3(Random.Range(-randomPlace, randomPlace),
+                    Random.Range(-randomPlace, randomPlace), Random.Range(-randomPlace, randomPlace)));
         }
     }
 
@@ -43,7 +46,7 @@ public class Trail : MonoBehaviour
     {
         //print("tick");
         yield return new WaitForSeconds(0.01f);
-        
+
         if (transform.parent != null)
         {
             AddLinePoint(transform.TransformPoint(Vector3.zero));

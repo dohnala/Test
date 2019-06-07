@@ -146,8 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39da7f6701e26e45b107fabf5412d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorStart: {r: 1, g: 0.92144847, b: 0, a: 1}
-  colorEnd: {r: 1, g: 0.06448636, b: 0, a: 1}
+  colorStart: {r: 1, g: 0.9780377, b: 0, a: 1}
+  colorEnd: {r: 1, g: 0, b: 0, a: 1}
   widthStart: 0.1
   widthEnd: 0
+  randomPlace: 0
   fragments: 20
