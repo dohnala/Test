@@ -26,45 +26,32 @@ public class ShipController : MonoBehaviourPun
 
         if (leftRightThrust < 0)
         {
-            ApplyThrusters(leftThrusters, leftRightThrust, transform.right);
+            ApplyThrusters(leftThrusters, leftRightThrust, transform.right, 2);
         }
 
         if (leftRightThrust > 0)
         {
-            ApplyThrusters(rightThrusters, leftRightThrust, transform.right);
+            ApplyThrusters(rightThrusters, leftRightThrust, transform.right, 2);
         }
 
         if (forwardBackwardThrust < 0)
         {
-            ApplyThrusters(frontThrusters, forwardBackwardThrust, transform.up);
+            ApplyThrusters(frontThrusters, forwardBackwardThrust, transform.up, 2);
         }
 
-        ApplyEngines();
-    }
-
-    private void ApplyEngines()
-    {
-        var forwardThrust = Input.GetAxis("Vertical");
-
-        if (forwardThrust > 0)
+        if (forwardBackwardThrust > 0)
         {
-            foreach (var engine in engines)
-            {
-                var cachedEnginePos = engine.position;
-
-                _rb2d.AddForceAtPosition(Mathf.Abs(forwardThrust) * 2 * transform.up,
-                    new Vector2(cachedEnginePos.x, cachedEnginePos.y));
-            }
+            ApplyThrusters(engines, forwardBackwardThrust, transform.up, 5);
         }
     }
 
-    private void ApplyThrusters(IEnumerable<Transform> thrusters, float thrust, Vector3 direction)
+    private void ApplyThrusters(IEnumerable<Transform> thrusters, float thrust, Vector3 direction, float acceleration)
     {
         foreach (var thruster in thrusters)
         {
             var cachedThrusterPos = thruster.position;
 
-            _rb2d.AddForceAtPosition(direction * thrust,
+            _rb2d.AddForceAtPosition(acceleration * thrust * direction,
                 new Vector2(cachedThrusterPos.x, cachedThrusterPos.y));
         }
     }
