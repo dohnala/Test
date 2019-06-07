@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    private static float effectTime = 0.1f;
     private LineRenderer lr;
     public Transform SpawnPoint{ private get; set; }
+    
+    public GameObject Owner { private get; set; }
     
     public GameObject CollisionEffect { private get; set; }
 
     public float maxDistance;
+    public float laserFireDuration;
+
+    private Vector2 previousEffectPoint;
     
     void Start()
     {
@@ -30,9 +34,20 @@ public class Laser : MonoBehaviour
         if (hit.collider != null)
         {
             lr.SetPosition(1, hit.point);
+
+            var distance = Vector2.Distance(hit.point, previousEffectPoint);
             
-            GameObject effect = Instantiate(CollisionEffect, hit.point, hit.transform.rotation);
-            Destroy(effect, effectTime);
+            // apply effect only when distance is small
+            if (distance > 0.1f)
+            {
+                // effect should be rotated towards ship
+                var rotation = Owner.transform.rotation * Quaternion.Euler(Vector3.up * 180);
+                GameObject fireEffect = Instantiate(CollisionEffect, hit.point, rotation);
+                Destroy(fireEffect, laserFireDuration);
+                
+                previousEffectPoint = hit.point;
+            }
+
         }
         else
         {
@@ -40,4 +55,5 @@ public class Laser : MonoBehaviour
         }
         
     }
+    
 }

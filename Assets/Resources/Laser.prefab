@@ -49,7 +49,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 71a05b345bd0913479520e860616eb75, type: 2}
+  - {fileID: 2100000, guid: 9cfff0b3092ed2f42ac9f7aa38d1d3a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,8 +79,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.12598419
+        time: 0.01700592
+        value: 0.055114746
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -140,3 +140,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 10
+  laserFireDuration: 2

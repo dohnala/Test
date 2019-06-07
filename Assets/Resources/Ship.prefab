@@ -208,6 +208,7 @@ MonoBehaviour:
     type: 3}
   spawnPoints:
   - {fileID: 445099007927592577}
+  duration: 2
 --- !u!1 &102
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ public class FireLaser : MonoBehaviourPun
 
     public Transform[] spawnPoints;
 
+    public float duration;
+
     public void Update()
     {
         if (!photonView.IsMine) return;
@@ -29,8 +31,9 @@ public class FireLaser : MonoBehaviourPun
 
             laser.GetComponent<Laser>().SpawnPoint = spawnPoint;
             laser.GetComponent<Laser>().CollisionEffect = collisionEffect;
+            laser.GetComponent<Laser>().Owner = gameObject;
             
-            Destroy(laser, 2.0f);
+            Destroy(laser, duration);
         }
     }
 }
