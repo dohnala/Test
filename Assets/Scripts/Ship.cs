@@ -29,7 +29,6 @@ public class Ship : MonoBehaviourPun, IPunObservable
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         // ship's velocity must be synchronized
-
         if (stream.IsWriting)
         {
             stream.SendNext(_rb2D.velocity);
