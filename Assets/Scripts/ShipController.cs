@@ -12,6 +12,9 @@ public class ShipController : MonoBehaviourPun
 
     private Rigidbody2D _rb2d;
 
+    public float thrustersAcceleration = 2;
+    public float enginesAcceleration = 5;
+
     public void Start()
     {
         _rb2d = GetComponent<Rigidbody2D>();
@@ -26,22 +29,22 @@ public class ShipController : MonoBehaviourPun
 
         if (leftRightThrust < 0)
         {
-            ApplyThrusters(leftThrusters, leftRightThrust, transform.right, 2);
+            ApplyThrusters(leftThrusters, leftRightThrust, transform.right, thrustersAcceleration);
         }
 
         if (leftRightThrust > 0)
         {
-            ApplyThrusters(rightThrusters, leftRightThrust, transform.right, 2);
+            ApplyThrusters(rightThrusters, leftRightThrust, transform.right, thrustersAcceleration);
         }
 
         if (forwardBackwardThrust < 0)
         {
-            ApplyThrusters(frontThrusters, forwardBackwardThrust, transform.up, 2);
+            ApplyThrusters(frontThrusters, forwardBackwardThrust, transform.up, thrustersAcceleration);
         }
 
         if (forwardBackwardThrust > 0)
         {
-            ApplyThrusters(engines, forwardBackwardThrust, transform.up, 5);
+            ApplyThrusters(engines, forwardBackwardThrust, transform.up, enginesAcceleration);
         }
     }
 
