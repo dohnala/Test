@@ -11,6 +11,7 @@
 /[Mm]emoryCaptures/
 /Test.app/
 
+/ProjectSettings/ProjectVersion.txt
 /Packages/manifest.json
 
 # Never ignore Asset meta data
