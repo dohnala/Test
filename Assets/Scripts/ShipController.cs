@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
@@ -45,23 +45,27 @@ public class ShipController : MonoBehaviourPun
     private void ApplyEngines()
     {
         var forwardThrust = Input.GetAxis("Vertical");
-        
+
         if (forwardThrust > 0)
         {
             foreach (var engine in engines)
             {
-                Vector2 enginePos = new Vector2(engine.position.x, engine.transform.position.y); 
-                _rb2d.AddForceAtPosition(Mathf.Abs(forwardThrust) * 2 * transform.up, enginePos);
+                var cachedEnginePos = engine.position;
+
+                _rb2d.AddForceAtPosition(Mathf.Abs(forwardThrust) * 2 * transform.up,
+                    new Vector2(cachedEnginePos.x, cachedEnginePos.y));
             }
         }
     }
 
-    private void ApplyThrusters(Transform[] thrusters, float thrust, Vector3 direction)
+    private void ApplyThrusters(IEnumerable<Transform> thrusters, float thrust, Vector3 direction)
     {
         foreach (var thruster in thrusters)
         {
-            Vector2 thrusterPos = new Vector2(thruster.position.x, thruster.transform.position.y);
-            _rb2d.AddForceAtPosition(direction * thrust, thrusterPos);
+            var cachedThrusterPos = thruster.position;
+
+            _rb2d.AddForceAtPosition(direction * thrust,
+                new Vector2(cachedThrusterPos.x, cachedThrusterPos.y));
         }
     }
 }
