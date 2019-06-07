@@ -1,54 +1,49 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Trail : MonoBehaviour {
-
+public class Trail : MonoBehaviour
+{
     public Color colorStart;
     public Color colorEnd;
     public float widthStart;
-    public float widthEnd=0;
-    public int fragments=20;
-    private LineRenderer mLine;
-    // Use this for initialization
-    void Start () {
-        mLine = gameObject.AddComponent<LineRenderer>();
-        mLine.name = "asd" + Random.Range(0, 444444);
-        mLine.material = new Material(Shader.Find("Sprites/Default"));
-        mLine.startColor = colorEnd;
-        mLine.endColor = colorStart;
-        //mLine.SetColors(colEnd, colStart);
-        mLine.positionCount = fragments;
-        mLine.startWidth = widthEnd;
-        mLine.endWidth = widthStart;
-        //mLine.SetPosition(99, transform.position);
+    public float widthEnd;
+    public int fragments = 20;
 
-        for (int i = 0; i < mLine.positionCount ; i++)
+    private LineRenderer _mLine;
+
+    public void Start()
+    {
+        _mLine = gameObject.AddComponent<LineRenderer>();
+        _mLine.name = "asd" + Random.Range(0, 444444);
+        _mLine.material = new Material(Shader.Find("Sprites/Default"));
+        _mLine.startColor = colorEnd;
+        _mLine.endColor = colorStart;
+        _mLine.positionCount = fragments;
+        _mLine.startWidth = widthEnd;
+        _mLine.endWidth = widthStart;
+
+        for (var i = 0; i < _mLine.positionCount; i++)
         {
-            mLine.SetPosition(i,transform.TransformPoint(Vector3.zero));
+            _mLine.SetPosition(i, transform.TransformPoint(Vector3.zero));
         }
+
         StartCoroutine(LineDraw());
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 
     private void AddLinePoint(Vector3 v3NewPoint)
     {
-        for (int i = 0; i < mLine.positionCount - 1; i++)
+        for (var i = 0; i < _mLine.positionCount - 1; i++)
         {
-            mLine.SetPosition(i, mLine.GetPosition(i + 1));
-            mLine.SetPosition(mLine.positionCount - 1, v3NewPoint);
+            _mLine.SetPosition(i, _mLine.GetPosition(i + 1));
+            _mLine.SetPosition(_mLine.positionCount - 1, v3NewPoint);
         }
     }
 
-    IEnumerator LineDraw()
+    private IEnumerator LineDraw()
     {
         //print("tick");
         yield return new WaitForSeconds(0.01f);
+        
         if (transform.parent != null)
         {
             AddLinePoint(transform.TransformPoint(Vector3.zero));
@@ -57,6 +52,7 @@ public class Trail : MonoBehaviour {
         {
             AddLinePoint(transform.position);
         }
+
         StartCoroutine(LineDraw());
     }
 }
