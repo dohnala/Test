@@ -1,32 +1,29 @@
 ﻿using UnityEngine;
 
-public class Laser : MonoBehaviour
+public class Laser : Weapon
 {
     public float maxDistance;
-    public float laserFireDuration;
-
-    public Transform SpawnPoint { private get; set; }
-
-    public GameObject Owner { private get; set; }
-
-    public GameObject CollisionEffect { private get; set; }
+    public float duration;
+    public GameObject collisionEffect;
+    public float collisionEffectDuration;
 
     private LineRenderer _lineRenderer;
-
     private Vector2 _previousEffectPoint;
 
     public void Start()
     {
         _lineRenderer = GetComponent<LineRenderer>();
+
+        Destroy(gameObject, duration);
     }
 
     public void Update()
     {
-        var cachedSpawnPosition = SpawnPoint.position;
-        var start = new Vector2(cachedSpawnPosition.x, cachedSpawnPosition.y);
+        var cachedPosition = SpawnPoint.position;
+        var start = new Vector2(cachedPosition.x, cachedPosition.y);
         var direction = SpawnPoint.up;
 
-        _lineRenderer.SetPosition(0, cachedSpawnPosition);
+        _lineRenderer.SetPosition(0, cachedPosition);
 
         var hit = Physics2D.Raycast(start, direction, maxDistance);
 
@@ -41,16 +38,16 @@ public class Laser : MonoBehaviour
             {
                 // effect should be rotated towards ship
                 var rotation = Owner.transform.rotation * Quaternion.Euler(Vector3.up * 180);
-                var fireEffect = Instantiate(CollisionEffect, hit.point, rotation);
+                var fireEffect = Instantiate(collisionEffect, hit.point, rotation);
 
-                Destroy(fireEffect, laserFireDuration);
+                Destroy(fireEffect, collisionEffectDuration);
 
                 _previousEffectPoint = hit.point;
             }
         }
         else
         {
-            _lineRenderer.SetPosition(1, cachedSpawnPosition + direction * maxDistance);
+            _lineRenderer.SetPosition(1, cachedPosition + direction * maxDistance);
         }
     }
 }

@@ -140,4 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 10
-  laserFireDuration: 2
+  duration: 2
+  collisionEffect: {fileID: 2519212218373330148, guid: 2db99e7df726ed24ab7432ba3ae3d1c6,
+    type: 3}
+  collisionEffectDuration: 2
