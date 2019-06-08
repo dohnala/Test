@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using UI;
 using UnityEngine;
 
 public class Ship : MonoBehaviourPun, IPunObservable
@@ -9,6 +10,8 @@ public class Ship : MonoBehaviourPun, IPunObservable
 
     public GameObject spriteEnemy;
 
+    public ObjectHUD shipHUD;
+    
     private Rigidbody2D _rb2D;
 
     public void Start()
@@ -16,6 +19,8 @@ public class Ship : MonoBehaviourPun, IPunObservable
         shipCamera.SetActive(photonView.IsMine);
         spriteMe.SetActive(photonView.IsMine);
         spriteEnemy.SetActive(!photonView.IsMine);
+        
+        shipHUD.SetActive(!photonView.IsMine);
 
         _rb2D = GetComponent<Rigidbody2D>();
     }
