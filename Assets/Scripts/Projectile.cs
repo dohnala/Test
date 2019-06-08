@@ -1,18 +1,17 @@
 ﻿using Photon.Pun;
 using UnityEngine;
 
-public class Rocket : MonoBehaviour
+public class Projectile : Weapon
 {
     public float speed = 5;
     public float duration = 2;
-
-    public GameObject Owner { private get; set; }
-
+    
     public void Start()
     {
         var direction = transform.up;
+        var velocity = speed * new Vector2(direction.x, direction.y);
 
-        GetComponent<Rigidbody2D>().velocity += speed * new Vector2(direction.x, direction.y);
+        GetComponent<Rigidbody2D>().velocity += velocity;
 
         Destroy(gameObject, duration);
     }
@@ -30,5 +29,13 @@ public class Rocket : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+    
+    protected override void SetOwner(GameObject owner)
+    {
+       base.SetOwner(owner);
+       
+       // add owner's velocity
+       GetComponent<Rigidbody2D>().velocity += owner.GetComponent<Rigidbody2D>().velocity;
     }
 }
