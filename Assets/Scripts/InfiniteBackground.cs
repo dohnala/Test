@@ -13,10 +13,14 @@ public class InfiniteBackground : MonoBehaviour
         
         Vector2 offset = mat.mainTextureOffset;
 
-        offset.x = transform.position.x / transform.localScale.x / parralax;
-        offset.y = transform.position.y / transform.localScale.y / parralax;
+        var transform1 = transform;
+        var position = transform1.position;
+        var localScale = transform1.localScale;
+        
+        offset.x = position.x / localScale.x / parralax;
+        offset.y = position.y / localScale.y / parralax;
 
         mat.mainTextureOffset = offset;
-        transform.eulerAngles = Vector3.zero;
+        transform1.eulerAngles = Vector3.zero;
     }
 }
