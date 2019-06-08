@@ -9,6 +9,8 @@ public class Ship : MonoBehaviourPun, IPunObservable
 
     public GameObject spriteEnemy;
 
+    public GameObject[] backgrounds;
+    
     private Rigidbody2D _rb2D;
 
     public void Start()
@@ -18,6 +20,14 @@ public class Ship : MonoBehaviourPun, IPunObservable
         spriteEnemy.SetActive(!photonView.IsMine);
 
         _rb2D = GetComponent<Rigidbody2D>();
+
+        if (photonView.IsMine)
+        {
+            foreach (var background in backgrounds)
+            {
+                Instantiate(background, transform);
+            }
+        }
     }
 
     public void LateUpdate()
