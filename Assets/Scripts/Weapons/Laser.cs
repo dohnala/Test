@@ -41,8 +41,11 @@ namespace Weapons
                 {
                     // effect should be rotated towards ship
                     var rotation = Owner.transform.rotation * Quaternion.Euler(Vector3.up * 180);
-                    var fireEffect = Instantiate(collisionEffect, hit.point, rotation);
-
+                    var fireEffect = Instantiate(collisionEffect, hit.transform, true);
+                    fireEffect.transform.position = hit.point;
+                    fireEffect.transform.rotation = rotation;
+                    fireEffect.transform.localScale = new Vector3(1, 1, 1);
+                    
                     Destroy(fireEffect, collisionEffectDuration);
 
                     _previousEffectPoint = hit.point;
