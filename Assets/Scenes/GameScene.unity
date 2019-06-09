@@ -593,7 +593,7 @@ PrefabInstance:
     - target: {fileID: 3368557669602550658, guid: ad197546135aa45939946a7968bef19d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.17
       objectReference: {fileID: 0}
     - target: {fileID: 3368557669602550658, guid: ad197546135aa45939946a7968bef19d,
         type: 3}
@@ -691,4 +691,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 103078f3c7ed740d0b2149a4caec5487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceshipPrefab: {fileID: 101, guid: 5d515dd30cc494138a86a0ca38ffe0e5, type: 3}
+  playerShip: {fileID: 101, guid: 5d515dd30cc494138a86a0ca38ffe0e5, type: 3}
+  playerHUD: {fileID: 1299819198098715770, guid: 36a005195cef945fdbb858ff0b1f2a90,
+    type: 3}
