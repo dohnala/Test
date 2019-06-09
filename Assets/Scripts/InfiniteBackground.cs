@@ -8,7 +8,7 @@ public class InfiniteBackground : MonoBehaviour
 
     public void Awake()
     {
-        _material = GetComponent<MeshRenderer>().material;
+        _material = GetComponent<SpriteRenderer>().material;
     }
 
     public void Update()
