@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ship : MonoBehaviourPun, IPunObservable
 {
+    public static Ship Player;
+
     public GameObject shipCamera;
 
     public GameObject spriteMe;
@@ -11,9 +13,9 @@ public class Ship : MonoBehaviourPun, IPunObservable
     public GameObject spriteEnemy;
 
     public GameObject[] backgrounds;
-    
+
     public ObjectHUD shipHUD;
-    
+
     private Rigidbody2D _rb2D;
 
     public void Start()
@@ -27,6 +29,8 @@ public class Ship : MonoBehaviourPun, IPunObservable
 
         if (photonView.IsMine)
         {
+            Player = this;
+
             foreach (var background in backgrounds)
             {
                 Instantiate(background, transform);

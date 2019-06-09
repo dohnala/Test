@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace UI
 {
@@ -8,7 +9,7 @@ namespace UI
 
         public HealthBar HealthBar => healthBar;
 
-        private Transform _owner;
+        private GameObject _owner;
         private Vector3 _originalPosition;
         private Vector3 _originalScale;
         private Transform _cachedTransform;
@@ -22,17 +23,29 @@ namespace UI
         {
             _cachedTransform = transform;
 
-            _owner = _cachedTransform.parent;
+            _owner = _cachedTransform.parent.gameObject;
             _originalPosition = _cachedTransform.localPosition;
             _originalScale = _cachedTransform.localScale;
         }
 
+        private void Update()
+        {
+            var health = _owner.GetComponent<Health>();
+
+            if (health != null)
+            {
+                healthBar.SetActive(true);
+                healthBar.SetSize((float) Math.Round(health.CurrentHealth / health.MaxHealth, 2));
+            }
+        }
+
         private void LateUpdate()
         {
-            var cachedOwnerScaleY = _owner.localScale.y;
+            var cachedOwnerTransform = _owner.transform;
+            var cachedOwnerScaleY = cachedOwnerTransform.localScale.y;
 
             // HUD should always be at original position with respect to owner
-            _cachedTransform.position = _owner.position + cachedOwnerScaleY * _originalPosition;
+            _cachedTransform.position = cachedOwnerTransform.position + cachedOwnerScaleY * _originalPosition;
 
             // HUD should not scale on Y when owner is scaled
             _cachedTransform.localScale = new Vector3(
