@@ -1,26 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InfiniteBackground : MonoBehaviour
 {
     public float parralax = 2f;
-    
-    void Update () {
 
-        MeshRenderer mr = GetComponent<MeshRenderer>();
-        Material mat = mr.material;
-        
-        Vector2 offset = mat.mainTextureOffset;
+    private Material _material;
 
-        var transform1 = transform;
-        var position = transform1.position;
-        var localScale = transform1.localScale;
-        
-        offset.x = position.x / localScale.x / parralax;
-        offset.y = position.y / localScale.y / parralax;
+    public void Awake()
+    {
+        _material = GetComponent<MeshRenderer>().material;
+    }
 
-        mat.mainTextureOffset = offset;
-        transform1.eulerAngles = Vector3.zero;
+    public void Update()
+    {
+        var offset = _material.mainTextureOffset;
+
+        var cachedTransform = transform;
+        var cachedPosition = cachedTransform.position;
+        var cachedScale = cachedTransform.localScale;
+
+        offset.x = cachedPosition.x / cachedScale.x / parralax;
+        offset.y = cachedPosition.y / cachedScale.y / parralax;
+
+        _material.mainTextureOffset = offset;
+        cachedTransform.eulerAngles = Vector3.zero;
     }
 }
