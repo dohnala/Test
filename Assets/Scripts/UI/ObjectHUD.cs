@@ -16,8 +16,8 @@ namespace UI
         public void SetActive(bool value)
         {
             gameObject.SetActive(value);
-    }
-        
+        }
+
         private void Awake()
         {
             _cachedTransform = transform;
