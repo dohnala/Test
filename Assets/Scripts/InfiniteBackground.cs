@@ -8,7 +8,7 @@ public class InfiniteBackground : MonoBehaviour
     
     void Update () {
 
-        MeshRenderer mr = GetComponent<MeshRenderer>();
+        SpriteRenderer mr = GetComponent<SpriteRenderer>();
         Material mat = mr.material;
         
         Vector2 offset = mat.mainTextureOffset;
