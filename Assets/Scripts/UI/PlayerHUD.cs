@@ -1,14 +1,26 @@
-﻿using UI;
+﻿using System;
 using UnityEngine;
 
-public class PlayerHUD : MonoBehaviour
+namespace UI
 {
-    public HealthBar healthBar;
-
-    public HealthBar HealthBar => healthBar;
-
-    public void SetActive(bool value)
+    public class PlayerHUD : MonoBehaviour
     {
-        gameObject.SetActive(value);
+        public HealthBar healthBar;
+
+        public void Update()
+        {
+            var ship = Ship.Player.gameObject;
+
+            if (ship != null)
+            {
+                var health = ship.GetComponent<Health>();
+
+                if (health != null)
+                {
+                    healthBar.SetActive(true);
+                    healthBar.SetSize((float) Math.Round(health.CurrentHealth / health.MaxHealth, 2));
+                }
+            }
+        }
     }
 }
