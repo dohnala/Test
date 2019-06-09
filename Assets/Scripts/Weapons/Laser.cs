@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace Weapons
 {
@@ -27,7 +28,7 @@ namespace Weapons
 
             _lineRenderer.SetPosition(0, cachedPosition);
 
-            var hit = Physics2D.Raycast(start, direction, maxDistance);
+            var hit = FindHit(start, direction, maxDistance);
 
             if (hit.collider != null)
             {
@@ -51,6 +52,17 @@ namespace Weapons
             {
                 _lineRenderer.SetPosition(1, cachedPosition + direction * maxDistance);
             }
+        }
+
+        private RaycastHit2D FindHit(Vector2 start, Vector3 direction, float distance)
+        {
+            // select the nearest hit while ignoring the owner
+
+            // ReSharper disable once Unity.PreferNonAllocApi
+            return Physics2D.RaycastAll(start, direction, distance)
+                .Where(hit => hit.collider.gameObject != Owner)
+                .OrderBy(hit => hit.distance)
+                .FirstOrDefault();
         }
     }
 }

@@ -12,30 +12,36 @@ namespace Weapons
         {
             public KeyCode key;
             public GameObject weapon;
+            public Transform[] spawnPoints;
         }
 
         public WeaponBinding[] weaponBindings;
 
         public KeyCode fireKey;
 
-        public Transform[] spawnPoints;
-
         private Dictionary<KeyCode, GameObject> _weaponsDictionary;
 
+        private Dictionary<KeyCode, Transform[]> _spawnPointsDictionary;
+
         private GameObject _currentWeapon;
+
+        private Transform[] _currentSpawnPoints;
 
         public void Start()
         {
             if (weaponBindings.Length > 0)
             {
                 _currentWeapon = weaponBindings[0].weapon;
+                _currentSpawnPoints = weaponBindings[0].spawnPoints;
             }
 
             _weaponsDictionary = new Dictionary<KeyCode, GameObject>();
+            _spawnPointsDictionary = new Dictionary<KeyCode, Transform[]>();
 
             foreach (var weaponBinding in weaponBindings)
             {
                 _weaponsDictionary.Add(weaponBinding.key, weaponBinding.weapon);
+                _spawnPointsDictionary.Add(weaponBinding.key, weaponBinding.spawnPoints);
             }
         }
 
@@ -61,6 +67,7 @@ namespace Weapons
         public void SwitchWeapon(KeyCode key)
         {
             _currentWeapon = _weaponsDictionary[key];
+            _currentSpawnPoints = _spawnPointsDictionary[key];
         }
 
         [PunRPC]
@@ -68,7 +75,7 @@ namespace Weapons
         {
             if (!_currentWeapon) return;
 
-            foreach (var spawnPoint in spawnPoints)
+            foreach (var spawnPoint in _currentSpawnPoints)
             {
                 var weapon = Instantiate(_currentWeapon, spawnPoint.position, spawnPoint.rotation);
 
