@@ -2,7 +2,7 @@
 using UI;
 using UnityEngine;
 
-public class Ship : MonoBehaviourPun, IPunObservable
+public class Ship : Object, IPunObservable
 {
     public static Ship Player;
 
@@ -54,6 +54,14 @@ public class Ship : MonoBehaviourPun, IPunObservable
         else if (stream.IsReading)
         {
             _rb2D.velocity = (Vector2) stream.ReceiveNext();
+        }
+    }
+
+    protected override void OnDied()
+    {
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
         }
     }
 }

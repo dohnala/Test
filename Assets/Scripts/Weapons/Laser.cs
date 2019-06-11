@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Weapons
@@ -9,13 +10,27 @@ namespace Weapons
         public float duration;
         public GameObject collisionEffect;
         public float collisionEffectDuration;
+        public int ticksPerSecond;
+        public float damagePerTick;
 
         private LineRenderer _lineRenderer;
         private Vector2 _previousEffectPoint;
-
+        private GameObject _currentTarget;
+        private float _tickTime;
+        private float _timeSinceLastTick;
+        
         public void Start()
         {
             _lineRenderer = GetComponent<LineRenderer>();
+
+            if (ticksPerSecond > 0)
+            {
+                _tickTime = 1f / ticksPerSecond;    
+            }
+            else
+            {
+                _tickTime = 0;
+            }
 
             Destroy(gameObject, duration);
         }
@@ -32,6 +47,18 @@ namespace Weapons
 
             if (hit.collider != null)
             {
+                if (hit.collider.gameObject == _currentTarget)
+                {
+                    _timeSinceLastTick += Time.deltaTime;
+                }
+                else
+                {
+                    _currentTarget = hit.collider.gameObject;
+                    
+                    // start with a tick
+                    _timeSinceLastTick = _tickTime;
+                }
+                
                 _lineRenderer.SetPosition(1, hit.point);
 
                 var distance = Vector2.Distance(hit.point, _previousEffectPoint);
@@ -45,14 +72,37 @@ namespace Weapons
                     fireEffect.transform.position = hit.point;
                     fireEffect.transform.rotation = rotation;
                     fireEffect.transform.localScale = new Vector3(1, 1, 1);
-                    
+
                     Destroy(fireEffect, collisionEffectDuration);
 
                     _previousEffectPoint = hit.point;
                 }
+
+                if (_tickTime > 0 && _timeSinceLastTick >= _tickTime)
+                {
+                    var ticks = _timeSinceLastTick / _tickTime;
+                    var rest = _timeSinceLastTick % _tickTime;
+
+                    _timeSinceLastTick = rest;
+                    
+                    var photonView = _currentTarget.GetComponent<PhotonView>();
+
+                    if (photonView != null && (photonView.IsMine || photonView.IsSceneView))
+                    {
+                        var damageable = _currentTarget.GetComponent<IDamageable>();
+
+                        if (damageable != null)
+                        {
+                            photonView.RPC("TakeDamage", RpcTarget.AllBuffered,
+                                ticks * damagePerTick);
+                        }
+                    }   
+                }
             }
             else
             {
+                _currentTarget = null;
+                _timeSinceLastTick = 0;
                 _lineRenderer.SetPosition(1, cachedPosition + direction * maxDistance);
             }
         }
@@ -63,7 +113,7 @@ namespace Weapons
 
             // ReSharper disable once Unity.PreferNonAllocApi
             return Physics2D.RaycastAll(start, direction, distance)
-                .Where(hit => hit.collider.gameObject != Owner)
+                .Where(hit => !IsCollisionWithOwner(hit.collider.gameObject))
                 .OrderBy(hit => hit.distance)
                 .FirstOrDefault();
         }

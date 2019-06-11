@@ -18,5 +18,17 @@ namespace Weapons
         {
             _owner = owner;
         }
+        
+        protected bool IsCollisionWithOwner(GameObject other)
+        {
+            if (other == Owner)
+            {
+                return true;
+            }
+
+            var hasOwner = other.GetComponent<IHasOwner>();
+
+            return hasOwner != null && hasOwner.GetOwner() == Owner;
+        }
     }
 }

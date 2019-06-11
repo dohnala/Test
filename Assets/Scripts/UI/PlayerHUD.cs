@@ -9,11 +9,11 @@ namespace UI
 
         public void Update()
         {
-            var ship = Ship.Player.gameObject;
+            var player = Ship.Player;
 
-            if (ship != null)
+            if (player != null)
             {
-                var health = ship.GetComponent<Health>();
+                var health = player.gameObject.GetComponent<Health>();
 
                 if (health != null)
                 {
