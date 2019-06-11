@@ -1,9 +1,14 @@
-﻿using Photon.Pun;
+﻿using System;
+using Photon.Pun;
 using UI;
 using UnityEngine;
 
-public class Health : MonoBehaviour, IPunObservable
+public class Health : MonoBehaviour, IPunObservable, IDamageable
 {
+    public delegate void OnDied();
+
+    public event OnDied onDied;
+
     public float startHealth;
     public float maxHealth;
 
@@ -27,6 +32,11 @@ public class Health : MonoBehaviour, IPunObservable
     private void SetHealth(float health)
     {
         _currentHealth = Mathf.Clamp(health, 0f, maxHealth);
+
+        if (Math.Abs(_currentHealth) < maxHealth / 1000f)
+        {
+            onDied?.Invoke();
+        }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -43,5 +53,11 @@ public class Health : MonoBehaviour, IPunObservable
             CurrentHealth = (float) stream.ReceiveNext();
             maxHealth = (float) stream.ReceiveNext();
         }
+    }
+
+    [PunRPC]
+    public void TakeDamage(float damage)
+    {
+        CurrentHealth -= damage;
     }
 }

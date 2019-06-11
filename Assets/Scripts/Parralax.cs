@@ -8,9 +8,14 @@ public class Parralax : MonoBehaviour
     {
         var cachedPosition = transform.position;
 
-        var shipBody = Ship.Player.GetComponent<Rigidbody2D>();
-        var speed = speedCoefficient * Time.deltaTime * shipBody.velocity;
+        var player = Ship.Player;
 
-        transform.position = new Vector3(cachedPosition.x + speed.x, cachedPosition.y + speed.y);
+        if (player != null)
+        {
+            var shipBody = player.GetComponent<Rigidbody2D>();
+            var speed = speedCoefficient * Time.deltaTime * shipBody.velocity;
+
+            transform.position = new Vector3(cachedPosition.x + speed.x, cachedPosition.y + speed.y);
+        }
     }
 }

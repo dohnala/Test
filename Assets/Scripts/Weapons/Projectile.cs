@@ -3,10 +3,11 @@ using UnityEngine;
 
 namespace Weapons
 {
-    public class Projectile : Weapon
+    public class Projectile : Weapon, IDealDamage, IHasOwner
     {
         public float speed = 5;
         public float duration = 2;
+        public float damage = 50;
 
         public void Start()
         {
@@ -21,13 +22,18 @@ namespace Weapons
         public void OnTriggerEnter2D(Collider2D other)
         {
             // ignore collision with owner
-            if (other.gameObject == Owner) return;
+            if (IsCollisionWithOwner(other.gameObject)) return;
 
-            var otherPhotonView = other.gameObject.GetComponent<PhotonView>();
+            var photonView = other.gameObject.GetComponent<PhotonView>();
 
-            if (otherPhotonView != null && otherPhotonView.IsMine)
+            if (photonView != null && (photonView.IsMine || photonView.IsSceneView))
             {
-                // take damage via RPC
+                var damageable = other.gameObject.GetComponent<IDamageable>();
+
+                if (damageable != null)
+                {
+                    photonView.RPC("TakeDamage", RpcTarget.AllBuffered, damage);
+                }
             }
 
             Destroy(gameObject);
@@ -39,6 +45,11 @@ namespace Weapons
 
             // add owner's velocity
             GetComponent<Rigidbody2D>().velocity += owner.GetComponent<Rigidbody2D>().velocity;
+        }
+
+        public GameObject GetOwner()
+        {
+            return Owner;
         }
     }
 }

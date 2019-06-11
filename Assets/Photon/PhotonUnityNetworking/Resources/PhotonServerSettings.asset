@@ -36,5 +36,6 @@ MonoBehaviour:
   - FireLasers
   - FireWeapon
   - SwitchWeapon
+  - TakeDamage
   DisableAutoOpenWizard: 1
   ShowSettings: 1

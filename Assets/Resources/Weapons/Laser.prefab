@@ -144,3 +144,5 @@ MonoBehaviour:
   collisionEffect: {fileID: 2519212218373330148, guid: 2db99e7df726ed24ab7432ba3ae3d1c6,
     type: 3}
   collisionEffectDuration: 2
+  ticksPerSecond: 4
+  damagePerTick: 50
