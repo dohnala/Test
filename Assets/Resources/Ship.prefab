@@ -222,7 +222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 5000
   maxHealth: 5000
-  objectHUD: {fileID: 5244497206652482886}
 --- !u!1 &102
 GameObject:
   m_ObjectHideFlags: 0
