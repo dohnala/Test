@@ -2,15 +2,19 @@ using Photon.Pun;
 
 public class Object : MonoBehaviourPun
 {
-    private Health _health;
+    public new string name;
 
-    private void Awake()
+    public string Name => name;
+
+    public Health Health { get; private set; }
+
+    protected virtual void Awake()
     {
-        _health = GetComponent<Health>();
+        Health = GetComponent<Health>();
 
-        if (_health != null)
+        if (Health != null)
         {
-            _health.onDied += OnDiedInternal;
+            Health.onDied += OnDiedInternal;
         }
     }
 

@@ -18,7 +18,7 @@ namespace UI
                 if (health != null)
                 {
                     healthBar.SetActive(true);
-                    healthBar.SetSize((float) Math.Round(health.CurrentHealth / health.MaxHealth, 2));
+                    healthBar.SetValue((float) Math.Round(health.CurrentHealth / health.MaxHealth, 2));
                 }
             }
         }
