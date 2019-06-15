@@ -1032,6 +1032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2013935146}
   - component: {fileID: 2013935147}
+  - component: {fileID: 2013935148}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1068,3 +1069,17 @@ MonoBehaviour:
   playerShip: {fileID: 101, guid: 5d515dd30cc494138a86a0ca38ffe0e5, type: 3}
   playerHUD: {fileID: 1299819198098715770, guid: 36a005195cef945fdbb858ff0b1f2a90,
     type: 3}
+  fpsCounter: {fileID: 2013935148}
+--- !u!114 &2013935148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013935145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8625dc011df3645b5b387a507723011b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  measurePeriod: 0.5
