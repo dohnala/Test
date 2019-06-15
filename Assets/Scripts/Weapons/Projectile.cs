@@ -30,10 +30,7 @@ namespace Weapons
             {
                 var damageable = other.gameObject.GetComponent<IDamageable>();
 
-                if (damageable != null)
-                {
-                    photonView.RPC("TakeDamage", RpcTarget.AllBuffered, damage);
-                }
+                damageable?.TakeDamage(damage);
             }
 
             Destroy(gameObject);

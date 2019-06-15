@@ -32,7 +32,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2021854056532173441}
+  - {fileID: 5531062686201420830}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b488cb7e0a42e18106dba301a02864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Asteroid
 --- !u!114 &9166115673414833753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 1000
   maxHealth: 1000
---- !u!1001 &3968434310179371786
+--- !u!1001 &5531062686201421486
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -158,7 +159,12 @@ PrefabInstance:
     - target: {fileID: 7898960808356162066, guid: 7ae776fb54b654548b99d43e2a2768df,
         type: 3}
       propertyPath: m_Name
-      value: AsteroidHUD
+      value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 7898960808356162066, guid: 7ae776fb54b654548b99d43e2a2768df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3106820152855812491, guid: 7ae776fb54b654548b99d43e2a2768df,
         type: 3}
@@ -223,17 +229,17 @@ PrefabInstance:
     - target: {fileID: 3106820152855812491, guid: 7ae776fb54b654548b99d43e2a2768df,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.69
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 3106820152855812491, guid: 7ae776fb54b654548b99d43e2a2768df,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 3106820152855812491, guid: 7ae776fb54b654548b99d43e2a2768df,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3106820152855812491, guid: 7ae776fb54b654548b99d43e2a2768df,
         type: 3}
@@ -265,11 +271,36 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7453831912915769021, guid: 7ae776fb54b654548b99d43e2a2768df,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7453831912915769021, guid: 7ae776fb54b654548b99d43e2a2768df,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7453831912915769021, guid: 7ae776fb54b654548b99d43e2a2768df,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7453831912915769021, guid: 7ae776fb54b654548b99d43e2a2768df,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8609255028638394535, guid: 7ae776fb54b654548b99d43e2a2768df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ae776fb54b654548b99d43e2a2768df, type: 3}
---- !u!224 &2021854056532173441 stripped
+--- !u!224 &5531062686201420830 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3106820152855812491, guid: 7ae776fb54b654548b99d43e2a2768df,
     type: 3}
-  m_PrefabInstance: {fileID: 3968434310179371786}
+  m_PrefabInstance: {fileID: 5531062686201421486}
   m_PrefabAsset: {fileID: 0}

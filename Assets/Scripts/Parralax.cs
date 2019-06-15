@@ -2,20 +2,32 @@
 
 public class Parralax : MonoBehaviour
 {
-    public float speedCoefficient = 0.5f;
+    public Transform currentCamera;
+    public float smooth = 1f;
 
-    private void FixedUpdate()
+    private float _scale;
+    private Vector3 _previousCameraPosition;
+
+    private void Start()
     {
+        _previousCameraPosition = currentCamera.position;
+        _scale = transform.position.z * -1;
+    }
+
+    private void LateUpdate()
+    {
+        var cachedCameraPosition = currentCamera.position;
         var cachedPosition = transform.position;
 
-        var player = Ship.Player;
+        var parallax = (_previousCameraPosition - cachedCameraPosition) * _scale;
 
-        if (player != null)
-        {
-            var shipBody = player.GetComponent<Rigidbody2D>();
-            var speed = speedCoefficient * Time.deltaTime * shipBody.velocity;
+        var targetPosition = new Vector3(
+            cachedPosition.x + parallax.x,
+            cachedPosition.y + parallax.y,
+            cachedPosition.z);
 
-            transform.position = new Vector3(cachedPosition.x + speed.x, cachedPosition.y + speed.y);
-        }
+        transform.position = Vector3.Lerp(cachedPosition, targetPosition, smooth * Time.deltaTime);
+
+        _previousCameraPosition = cachedCameraPosition;
     }
 }

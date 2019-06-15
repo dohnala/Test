@@ -17,22 +17,27 @@ public class Health : MonoBehaviour, IPunObservable, IDamageable
     public float CurrentHealth
     {
         get => _currentHealth;
-        set => SetHealth(value);
+        private set => SetHealth(value);
     }
 
     public float MaxHealth => maxHealth;
 
     private HealthBar _healthBar;
 
-    public void Awake()
+    private void Awake()
     {
         CurrentHealth = startHealth;
+    }
+    
+    public void TakeDamage(float damage)
+    {
+        CurrentHealth -= damage;
     }
 
     private void SetHealth(float health)
     {
         _currentHealth = Mathf.Clamp(health, 0f, maxHealth);
-
+        
         if (Math.Abs(_currentHealth) < maxHealth / 1000f)
         {
             onDied?.Invoke();
@@ -53,11 +58,5 @@ public class Health : MonoBehaviour, IPunObservable, IDamageable
             CurrentHealth = (float) stream.ReceiveNext();
             maxHealth = (float) stream.ReceiveNext();
         }
-    }
-
-    [PunRPC]
-    public void TakeDamage(float damage)
-    {
-        CurrentHealth -= damage;
     }
 }

@@ -91,11 +91,7 @@ namespace Weapons
                     {
                         var damageable = _currentTarget.GetComponent<IDamageable>();
 
-                        if (damageable != null)
-                        {
-                            photonView.RPC("TakeDamage", RpcTarget.AllBuffered,
-                                ticks * damagePerTick);
-                        }
+                        damageable?.TakeDamage(ticks * damagePerTick);
                     }   
                 }
             }
