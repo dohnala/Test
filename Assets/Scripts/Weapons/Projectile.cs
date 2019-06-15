@@ -9,17 +9,27 @@ namespace Weapons
         public float duration = 2;
         public float damage = 50;
 
-        public void Start()
-        {
-            var direction = transform.up;
-            var velocity = speed * new Vector2(direction.x, direction.y);
+        protected Rigidbody2D _rigidbody2D;
+        protected Vector2 _ownerVelocity;
 
-            GetComponent<Rigidbody2D>().velocity += velocity;
+        public GameObject GetOwner()
+        {
+            return Owner;
+        }
+
+        protected virtual void Awake()
+        {
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+        }
+
+        protected void Start()
+        {
+            _rigidbody2D.velocity += (Vector2) (speed * transform.up);
 
             Destroy(gameObject, duration);
         }
 
-        public void OnTriggerEnter2D(Collider2D other)
+        protected void OnTriggerEnter2D(Collider2D other)
         {
             // ignore collision with owner
             if (IsCollisionWithOwner(other.gameObject)) return;
@@ -40,13 +50,10 @@ namespace Weapons
         {
             base.SetOwner(owner);
 
-            // add owner's velocity
-            GetComponent<Rigidbody2D>().velocity += owner.GetComponent<Rigidbody2D>().velocity;
-        }
+            _ownerVelocity = owner.GetComponent<Rigidbody2D>().velocity;
 
-        public GameObject GetOwner()
-        {
-            return Owner;
+            // add owner's velocity
+            _rigidbody2D.velocity += _ownerVelocity;
         }
     }
 }

@@ -205,6 +205,12 @@ MonoBehaviour:
       type: 3}
     spawnPoints:
     - {fileID: 445099007927592577}
+  - key: 102
+    weapon: {fileID: 8674754327505378787, guid: 436db036ea22d4760a513e7560e02a83,
+      type: 3}
+    spawnPoints:
+    - {fileID: 3602319663387463733}
+    - {fileID: 7374238028256686135}
   fireKey: 32
 --- !u!114 &3056082494592542347
 MonoBehaviour:
