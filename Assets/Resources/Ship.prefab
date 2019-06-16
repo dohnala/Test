@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 538}
   - component: {fileID: 4137142572161050304}
   - component: {fileID: 3056082494592542347}
+  - component: {fileID: 1043886506081935895}
   m_Layer: 8
   m_Name: Ship
   m_TagString: Untagged
@@ -205,6 +206,12 @@ MonoBehaviour:
       type: 3}
     spawnPoints:
     - {fileID: 445099007927592577}
+  - key: 102
+    weapon: {fileID: 8674754327505378787, guid: 436db036ea22d4760a513e7560e02a83,
+      type: 3}
+    spawnPoints:
+    - {fileID: 3602319663387463733}
+    - {fileID: 7374238028256686135}
   fireKey: 32
 --- !u!114 &3056082494592542347
 MonoBehaviour:
@@ -220,6 +227,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 2000
   maxHealth: 2000
+--- !u!114 &1043886506081935895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e42e85c25247c6b66e2543c9b845d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 0
 --- !u!1 &102
 GameObject:
   m_ObjectHideFlags: 0
