@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8326036730184566682}
   - component: {fileID: 6456103292912049699}
   - component: {fileID: 5771472576352148555}
+  - component: {fileID: 9051888769351727372}
   m_Layer: 9
   m_Name: PlasmaBall
   m_TagString: Untagged
@@ -4875,3 +4876,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &9051888769351727372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3027051525684412743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e42e85c25247c6b66e2543c9b845d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 4

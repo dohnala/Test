@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8674754327505378784}
   - component: {fileID: 8674754327505378785}
   - component: {fileID: 8674754327505378786}
+  - component: {fileID: 2315154982184598052}
   m_Layer: 9
   m_Name: HeatSeekingRocket
   m_TagString: Untagged
@@ -155,3 +156,16 @@ MonoBehaviour:
   widthEnd: 0
   randomPlace: 0
   fragments: 20
+--- !u!114 &2315154982184598052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8674754327505378787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e42e85c25247c6b66e2543c9b845d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 3

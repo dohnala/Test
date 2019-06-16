@@ -5,10 +5,10 @@ namespace Weapons
 {
     public class HeatSeekingProjectile : Projectile
     {
-        private const int MaxObjects = 10;
+        private const int MaxObjects = 20;
 
-        public float angularSpeed = 200;
-        public float radius = 8;
+        public float angularSpeed = 150;
+        public float radius = 3;
 
         private Collider2D[] _visibleObjects;
         private GameObject _target;
@@ -30,7 +30,7 @@ namespace Weapons
             }
         }
 
-        protected GameObject FindTarget()
+        private GameObject FindTarget()
         {
             var cachedTransform = transform;
             var center = cachedTransform.position + cachedTransform.up * radius;
@@ -38,17 +38,19 @@ namespace Weapons
             Physics2D.OverlapCircleNonAlloc(center, radius, _visibleObjects);
 
             _target = _visibleObjects
-                .Where(c => c != null)
-                .Where(c => c.gameObject != gameObject)
-                .Where(c => !IsCollisionWithOwner(c.gameObject))
-                .OrderBy(Distance)
-                .Select(c => c.gameObject)
+                .Where(o => o != null)
+                .Where(o => o.gameObject != gameObject)
+                .Where(o => !IsCollisionWithOwner(o.gameObject))
+                .Select(o => o.gameObject.GetComponent<HeatSource>())
+                .Where(o => o != null)
+                .OrderBy(Brightness)
+                .Select(o => o.gameObject)
                 .FirstOrDefault();
 
             return _target;
         }
 
-        protected void MoveTowards(GameObject target)
+        private void MoveTowards(GameObject target)
         {
             var forward = transform.up;
 
@@ -61,9 +63,16 @@ namespace Weapons
             _rigidbody2D.velocity = (Vector2) (forward * speed) + _ownerVelocity;
         }
 
-        protected float Distance(Collider2D other)
+        private float Distance(GameObject other)
         {
-            return Vector3.Distance(transform.position, other.gameObject.transform.position);
+            return Vector3.Distance(transform.position, other.transform.position);
+        }
+
+        private float Brightness(HeatSource other)
+        {
+            var distance = Distance(other.gameObject);
+
+            return other.Intensity / 4 * Mathf.PI * distance * distance;
         }
     }
 }

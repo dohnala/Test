@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 641662242329606824}
   - component: {fileID: 4219446326163693362}
   - component: {fileID: 8254143180162065431}
+  - component: {fileID: 1342396658410661279}
   m_Layer: 9
   m_Name: Rocket
   m_TagString: Untagged
@@ -134,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   duration: 2
+  damage: 50
 --- !u!114 &8254143180162065431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,3 +154,16 @@ MonoBehaviour:
   widthEnd: 0
   randomPlace: 0
   fragments: 20
+--- !u!114 &1342396658410661279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8601377223392001558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e42e85c25247c6b66e2543c9b845d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 3
