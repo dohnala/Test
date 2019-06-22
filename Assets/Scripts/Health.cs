@@ -1,6 +1,5 @@
 ﻿using System;
 using Photon.Pun;
-using UI;
 using UnityEngine;
 
 public class Health : MonoBehaviour, IPunObservable, IDamageable
@@ -21,9 +20,7 @@ public class Health : MonoBehaviour, IPunObservable, IDamageable
     }
 
     public float MaxHealth => maxHealth;
-
-    private HealthBar _healthBar;
-
+    
     private void Awake()
     {
         CurrentHealth = startHealth;

@@ -90,9 +90,12 @@ namespace Weapons
                 // ignore collision with ship's colliders
                 foreach (var shipCollider in shipColliders)
                 {
-                    Physics2D.IgnoreCollision(
-                        weapon.GetComponent<Collider2D>(), 
-                        shipCollider.GetComponent<Collider2D>());    
+                    if (shipCollider != null)
+                    {
+                        Physics2D.IgnoreCollision(
+                            weapon.GetComponent<Collider2D>(), 
+                            shipCollider.GetComponent<Collider2D>());     
+                    }
                 }
             }
         }
