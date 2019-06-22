@@ -17,7 +17,7 @@ TagManager:
   - Spaceship
   - Rocket
   - Background
-  - 
+  - Explosion
   - 
   - 
   - 
@@ -44,4 +44,10 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2160677459
+    locked: 0
+  - name: Objects
+    uniqueID: 1111881281
+    locked: 0
+  - name: Explosions
+    uniqueID: 1995706187
     locked: 0

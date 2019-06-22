@@ -8,6 +8,7 @@ namespace Weapons
         public float speed = 5;
         public float duration = 2;
         public float damage = 50;
+        public GameObject collisionEffect;
 
         protected Rigidbody2D _rigidbody2D;
         protected Vector2 _ownerVelocity;
@@ -54,6 +55,18 @@ namespace Weapons
 
             // add owner's velocity
             _rigidbody2D.velocity += _ownerVelocity;
+        }
+
+        protected void OnDestroy()
+        {
+            var cachedTransform = gameObject.transform;
+
+            if (collisionEffect != null)
+            {
+                var rotation = collisionEffect.transform.rotation * cachedTransform.rotation;
+
+                Instantiate(collisionEffect, cachedTransform.position, rotation);
+            }
         }
     }
 }
