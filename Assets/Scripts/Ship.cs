@@ -47,12 +47,4 @@ public class Ship : Object, IPunObservable
             _rb2D.velocity = (Vector2) stream.ReceiveNext();
         }
     }
-
-    protected override void OnDied()
-    {
-        if (PhotonNetwork.InRoom)
-        {
-            PhotonNetwork.LeaveRoom();
-        }
-    }
 }

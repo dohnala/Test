@@ -33,7 +33,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5531062686201421226}
+  - {fileID: 7484960876987598629}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Asteroid
+  destroyEffect: {fileID: 8961653194577321507, guid: 1a13f77911fda4f088acb26b984efaa9,
+    type: 3}
 --- !u!114 &9166115673414833753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +307,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9151337266856082570, guid: 7ae776fb54b654548b99d43e2a2768df,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2080708261
+      objectReference: {fileID: 0}
     - target: {fileID: 8609255028638394535, guid: 7ae776fb54b654548b99d43e2a2768df,
         type: 3}
       propertyPath: m_IsActive
@@ -312,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ae776fb54b654548b99d43e2a2768df, type: 3}
---- !u!224 &5531062686201421226 stripped
+--- !u!224 &7484960876987598629 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3106820152855812491, guid: 7ae776fb54b654548b99d43e2a2768df,
     type: 3}

@@ -1,8 +1,11 @@
 using Photon.Pun;
+using UnityEngine;
 
 public class Object : MonoBehaviourPun
 {
     public new string name;
+    
+    public GameObject destroyEffect;
 
     public string Name => name;
 
@@ -28,6 +31,14 @@ public class Object : MonoBehaviourPun
         if (photonView.IsMine || (photonView.IsSceneView && PhotonNetwork.IsMasterClient))
         {
             OnDied();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (destroyEffect != null && (photonView.IsOwnerActive || photonView.IsSceneView))
+        {
+            Instantiate(destroyEffect, gameObject.transform.position, Quaternion.identity);
         }
     }
 }
