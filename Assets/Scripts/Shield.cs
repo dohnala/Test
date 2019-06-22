@@ -37,7 +37,10 @@ public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
 
     private void Start()
     {
-        StartCoroutine(RefreshStacks());
+        if (photonView.IsMine)
+        {
+            StartCoroutine(RefreshStacks());    
+        }
     }
 
     private void CreateShieldCollider()

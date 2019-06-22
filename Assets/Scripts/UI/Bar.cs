@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class HealthBar : MonoBehaviour
+    public class Bar : MonoBehaviour
     {
         public Image fill;
         
