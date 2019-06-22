@@ -19,6 +19,8 @@ namespace Weapons
 
         public KeyCode fireKey;
 
+        public GameObject[] shipColliders;
+
         private Dictionary<KeyCode, GameObject> _weaponsDictionary;
 
         private Dictionary<KeyCode, Transform[]> _spawnPointsDictionary;
@@ -84,6 +86,14 @@ namespace Weapons
 
                 // pass this game object as an owner of the weapon
                 weapon.GetComponent<Weapon>().Owner = gameObject;
+
+                // ignore collision with ship's colliders
+                foreach (var shipCollider in shipColliders)
+                {
+                    Physics2D.IgnoreCollision(
+                        weapon.GetComponent<Collider2D>(), 
+                        shipCollider.GetComponent<Collider2D>());    
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
 namespace Weapons
 {
@@ -29,6 +30,19 @@ namespace Weapons
             var hasOwner = other.GetComponent<IHasOwner>();
 
             return hasOwner != null && hasOwner.GetOwner() == Owner;
+        }
+
+        protected bool CanHandleCollision(GameObject other)
+        {
+            var photonView = other.GetComponent<PhotonView>();
+
+            if (photonView == null)
+            {
+                photonView = _owner.GetComponent<PhotonView>();
+            }
+            
+            return photonView != null &&
+                   (photonView.IsMine || (photonView.IsSceneView && PhotonNetwork.IsMasterClient));
         }
     }
 }

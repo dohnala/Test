@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Photon.Pun;
 using UnityEngine;
 
 namespace Weapons
@@ -85,13 +84,11 @@ namespace Weapons
 
                     _timeSinceLastTick = rest;
                     
-                    var photonView = _currentTarget.GetComponent<PhotonView>();
-
-                    if (photonView != null && (photonView.IsMine || photonView.IsSceneView))
+                    if (CanHandleCollision(_currentTarget))
                     {
                         var damageable = _currentTarget.GetComponent<IDamageable>();
 
-                        damageable?.TakeDamage(ticks * damagePerTick);
+                        damageable?.TakeDamage(ticks * damagePerTick, hit.point);
                     }   
                 }
             }

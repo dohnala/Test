@@ -29,7 +29,7 @@ public class Health : MonoBehaviour, IPunObservable, IDamageable
         CurrentHealth = startHealth;
     }
     
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Vector2 position)
     {
         CurrentHealth -= damage;
     }
