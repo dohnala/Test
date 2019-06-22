@@ -1,13 +1,16 @@
 ﻿using System;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
     public class ObjectHUD : MonoBehaviour
     {
-        public HealthBar healthBar;
-        public TextMeshProUGUI nameText;
+        private const int DynamicPixelsPerUnit = 2;
+
+        public Text nameText;
+        public Bar healthBar;
+        public Bar shieldBar;
 
         private GameObject _owner;
         private Vector3 _ownerOriginalScale;
@@ -25,6 +28,8 @@ namespace UI
 
         private void Awake()
         {
+            GetComponent<CanvasScaler>().dynamicPixelsPerUnit = DynamicPixelsPerUnit;
+            
             _cachedTransform = GetComponent<RectTransform>();
 
             _owner = _cachedTransform.parent.gameObject;
@@ -58,6 +63,14 @@ namespace UI
             {
                 healthBar.SetActive(true);
                 healthBar.SetValue((float) Math.Round(health.CurrentHealth / health.MaxHealth, 2));
+            }
+            
+            var shield = _object.GetComponentInChildren<Shield>();
+
+            if (shield != null)
+            {
+                shieldBar.SetActive(true);
+                shieldBar.SetValue((float) Math.Round(shield.CurrentStacks / shield.MaxStacks, 2));
             }
         }
 

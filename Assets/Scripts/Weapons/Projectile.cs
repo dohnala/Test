@@ -1,5 +1,4 @@
-﻿using Photon.Pun;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Weapons
 {
@@ -34,14 +33,12 @@ namespace Weapons
         {
             // ignore collision with owner
             if (IsCollisionWithOwner(other.gameObject)) return;
-
-            var photonView = other.gameObject.GetComponent<PhotonView>();
-
-            if (photonView != null && (photonView.IsMine || photonView.IsSceneView))
+            
+            if (CanHandleCollision(other.gameObject))
             {
-                var damageable = other.gameObject.GetComponent<IDamageable>();
+                var damageable = other.GetComponent<IDamageable>();
 
-                damageable?.TakeDamage(damage);
+                damageable?.TakeDamage(damage, gameObject.transform.position);
             }
 
             Destroy(gameObject);

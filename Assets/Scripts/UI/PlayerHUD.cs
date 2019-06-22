@@ -6,7 +6,8 @@ namespace UI
 {
     public class PlayerHUD : MonoBehaviour
     {
-        public HealthBar healthBar;
+        public Bar healthBar;
+        public Bar shieldBar;
         public Text stats;
         
         public void Update()
@@ -21,6 +22,14 @@ namespace UI
                 {
                     healthBar.SetActive(true);
                     healthBar.SetValue((float) Math.Round(health.CurrentHealth / health.MaxHealth, 2));
+                }
+                
+                var shield = player.GetComponentInChildren<Shield>();
+
+                if (shield != null)
+                {
+                    shieldBar.SetActive(true);
+                    shieldBar.SetValue((float) Math.Round(shield.CurrentStacks / shield.MaxStacks, 2));
                 }
             }
 

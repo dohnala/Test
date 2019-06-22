@@ -25,6 +25,9 @@ public class Ship : Object, IPunObservable
     
     public void Start()
     {
+        Physics2D.IgnoreLayerCollision(Layers.SHIELD, Layers.OBJECT);
+        Physics2D.IgnoreLayerCollision(Layers.SHIELD, Layers.SHIELD);
+        
         spriteMe.SetActive(photonView.IsMine);
         spriteEnemy.SetActive(!photonView.IsMine);
         shipHUD.SetActive(!photonView.IsMine);

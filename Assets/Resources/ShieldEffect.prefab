@@ -45,12 +45,12 @@ GameObject:
   - component: {fileID: 4555305017987647860}
   - component: {fileID: 4555305017987647863}
   m_Layer: 0
-  m_Name: centring
+  m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4555305017987647862
 Transform:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 4555305018326361478}
   - component: {fileID: 4555305018326361476}
   m_Layer: 0
-  m_Name: animation
+  m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,5 +216,5 @@ MonoBehaviour:
   Columns: 3
   Rows: 5
   FramesPerSecond: 60
-  RunOnce: 0
-  DestroyAtAnimationEnd: 0
+  RunOnce: 1
+  DestroyAtAnimationEnd: 1
