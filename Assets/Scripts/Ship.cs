@@ -9,6 +9,10 @@ public class Ship : Object, IPunObservable
     public GameObject spriteMe;
 
     public GameObject spriteEnemy;
+    
+    public GameObject minimapIconMe;
+
+    public GameObject minimapIconEnemy;
 
     public ObjectHUD shipHUD;
 
@@ -30,6 +34,10 @@ public class Ship : Object, IPunObservable
         
         spriteMe.SetActive(photonView.IsMine);
         spriteEnemy.SetActive(!photonView.IsMine);
+        
+        minimapIconMe.SetActive(photonView.IsMine);
+        minimapIconEnemy.SetActive(!photonView.IsMine);
+        
         shipHUD.SetActive(!photonView.IsMine);
 
         if (photonView.IsMine)
