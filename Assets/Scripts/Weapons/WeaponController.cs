@@ -81,21 +81,21 @@ namespace Weapons
             {
                 var weapon = Instantiate(_currentWeapon, spawnPoint.position, spawnPoint.rotation);
 
+                var weaponCollider = weapon.GetComponent<Collider2D>();
+                
                 // pass spawn point
                 weapon.GetComponent<Weapon>().SpawnPoint = spawnPoint;
 
                 // pass this game object as an owner of the weapon
                 weapon.GetComponent<Weapon>().Owner = gameObject;
 
-                // ignore collision with ship's colliders
-                foreach (var shipCollider in shipColliders)
+                if (weaponCollider != null)
                 {
-                    if (shipCollider != null)
+                    // ignore collision with ship's colliders
+                    foreach (var shipCollider in shipColliders)
                     {
-                        Physics2D.IgnoreCollision(
-                            weapon.GetComponent<Collider2D>(), 
-                            shipCollider.GetComponent<Collider2D>());     
-                    }
+                        Physics2D.IgnoreCollision(weaponCollider, shipCollider.GetComponent<Collider2D>());  
+                    }    
                 }
             }
         }

@@ -21,6 +21,7 @@ namespace Weapons
         public void Start()
         {
             _lineRenderer = GetComponent<LineRenderer>();
+            _lineRenderer.enabled = false;
 
             if (ticksPerSecond > 0)
             {
@@ -59,6 +60,7 @@ namespace Weapons
                 }
                 
                 _lineRenderer.SetPosition(1, hit.point);
+                _lineRenderer.enabled = true;
 
                 var distance = Vector2.Distance(hit.point, _previousEffectPoint);
 
@@ -97,6 +99,7 @@ namespace Weapons
                 _currentTarget = null;
                 _timeSinceLastTick = 0;
                 _lineRenderer.SetPosition(1, cachedPosition + direction * maxDistance);
+                _lineRenderer.enabled = true;
             }
         }
 

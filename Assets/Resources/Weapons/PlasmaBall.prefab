@@ -138,6 +138,8 @@ MonoBehaviour:
   speed: 4
   duration: 2
   damage: 200
+  collisionEffect: {fileID: 2550604688142557307, guid: 8d9855c41a4c440589ad0b2cd7f8965e,
+    type: 3}
 --- !u!114 &8326036730184566682
 MonoBehaviour:
   m_ObjectHideFlags: 0

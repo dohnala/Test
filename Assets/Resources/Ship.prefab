@@ -42,7 +42,7 @@ Transform:
   - {fileID: 5453119028007740151}
   - {fileID: 8009120417436923257}
   - {fileID: 8987033746736568223}
-  - {fileID: 4128131234173869651}
+  - {fileID: 1321724077473137825}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -150,9 +150,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
+  destroyEffect: {fileID: 8961653194577321507, guid: 1a13f77911fda4f088acb26b984efaa9,
+    type: 3}
   spriteMe: {fileID: 102}
   spriteEnemy: {fileID: 104}
-  shipHUD: {fileID: 5261061797828786690}
+  shipHUD: {fileID: 1321724077473137725}
 --- !u!114 &538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,8 +310,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1111881281
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 07538049d75dfbb4386e9d54cc4248fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -387,8 +389,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1111881281
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1daf4def9ec4dc641a0ee96a9fe8bdfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1002,6 +1004,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9151337266856082570, guid: 7ae776fb54b654548b99d43e2a2768df,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2080708261
+      objectReference: {fileID: 0}
     - target: {fileID: 7453831912915769021, guid: 7ae776fb54b654548b99d43e2a2768df,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1024,13 +1031,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ae776fb54b654548b99d43e2a2768df, type: 3}
---- !u!224 &4128131234173869651 stripped
+--- !u!224 &1321724077473137825 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3106820152855812491, guid: 7ae776fb54b654548b99d43e2a2768df,
     type: 3}
   m_PrefabInstance: {fileID: 1321724077473138648}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5261061797828786690 stripped
+--- !u!114 &1321724077473137725 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6581094820484775386, guid: 7ae776fb54b654548b99d43e2a2768df,
     type: 3}
