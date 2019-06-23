@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
 {
-    private const float ShieldEffectRadius = 0.5f;
-
+    private const float ShieldHitEffectRadius = 0.73f;
+    private const float ShieldEffectRadius = 2 * ShieldHitEffectRadius;
+    
     public float radius = 1f;
 
     public int startStacks = 4;
@@ -15,8 +16,14 @@ public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
     public float refreshStackTime = 1f;
 
     public GameObject shieldEffect;
+    
+    public GameObject shieldHitEffect;
 
     private CircleCollider2D _collider;
+
+    private GameObject _shieldEffect;
+
+    private SpriteRenderer _shieldEffectRenderer;
 
     private int _currentStacks;
 
@@ -39,8 +46,15 @@ public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
     {
         if (photonView.IsMine)
         {
+            photonView.RPC("CreateShieldEffect", RpcTarget.All);    
+            
             StartCoroutine(RefreshStacks());    
         }
+    }
+
+    private void LateUpdate()
+    {
+        gameObject.transform.rotation = Quaternion.identity;
     }
 
     private void CreateShieldCollider()
@@ -58,8 +72,8 @@ public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
             if (CurrentStacks > 0)
             {
                 CurrentStacks -= 1;
-
-                photonView.RPC("CreateShieldEffect", RpcTarget.All, point);    
+                    
+                photonView.RPC("CreateShieldHitEffect", RpcTarget.All, point);    
             }  
         }
     }
@@ -70,9 +84,29 @@ public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
     }
 
     [PunRPC]
-    public void CreateShieldEffect(Vector2 point)
+    public void CreateShieldEffect()
     {
         if (shieldEffect != null)
+        {
+            var cachedTransform = gameObject.transform;
+            var cachedPosition = cachedTransform.position;
+
+            _shieldEffect = Instantiate(shieldEffect, cachedPosition, Quaternion.identity);
+            
+            _shieldEffect.transform.SetParent(gameObject.transform);
+
+            var scale = radius / ShieldEffectRadius;
+
+            _shieldEffect.transform.localScale = new Vector3(scale, scale, scale);
+
+            _shieldEffectRenderer = _shieldEffect.GetComponent<SpriteRenderer>();
+        }
+    }
+
+    [PunRPC]
+    public void CreateShieldHitEffect(Vector2 point)
+    {
+        if (shieldHitEffect != null)
         {
             var cachedTransform = gameObject.transform;
             var cachedPosition = cachedTransform.position;
@@ -80,12 +114,12 @@ public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
             var center = new Vector2(cachedPosition.x, cachedPosition.y);
             var angle = Mathf.Atan2(point.y - center.y, point.x - center.x) * 180 / Mathf.PI;
 
-            var effect = Instantiate(shieldEffect, cachedPosition,
+            var effect = Instantiate(shieldHitEffect, cachedPosition,
                 Quaternion.AngleAxis(angle, new Vector3(0, 0, 1)));
 
             effect.transform.SetParent(gameObject.transform);
 
-            var scale = radius / ShieldEffectRadius;
+            var scale = radius / ShieldHitEffectRadius;
 
             effect.transform.localScale = new Vector3(scale, scale, scale);
         }
@@ -112,6 +146,11 @@ public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
         _currentStacks = Mathf.Clamp(stacks, 0, maxStacks);
 
         _collider.enabled = CurrentStacks > 0;
+
+        if (_shieldEffectRenderer != null)
+        {
+            _shieldEffectRenderer.enabled = CurrentStacks > 0;
+        }
     }
 
     private IEnumerator RefreshStacks()
