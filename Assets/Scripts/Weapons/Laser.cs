@@ -5,6 +5,8 @@ namespace Weapons
 {
     public class Laser : Weapon
     {
+        private const float OffsetZ = -5;
+        
         public float maxDistance;
         public float duration;
         public GameObject collisionEffect;
@@ -41,7 +43,7 @@ namespace Weapons
             var start = new Vector2(cachedPosition.x, cachedPosition.y);
             var direction = SpawnPoint.up;
 
-            _lineRenderer.SetPosition(0, cachedPosition);
+            _lineRenderer.SetPosition(0, cachedPosition + new Vector3(0, 0, OffsetZ));
 
             var hit = FindHit(start, direction, maxDistance);
 
@@ -59,7 +61,7 @@ namespace Weapons
                     _timeSinceLastTick = _tickTime;
                 }
                 
-                _lineRenderer.SetPosition(1, hit.point);
+                _lineRenderer.SetPosition(1, (Vector3)hit.point + new Vector3(0, 0, OffsetZ));
                 _lineRenderer.enabled = true;
 
                 var distance = Vector2.Distance(hit.point, _previousEffectPoint);
@@ -95,7 +97,8 @@ namespace Weapons
             {
                 _currentTarget = null;
                 _timeSinceLastTick = 0;
-                _lineRenderer.SetPosition(1, cachedPosition + direction * maxDistance);
+                _lineRenderer.SetPosition(1, 
+                    cachedPosition + direction * maxDistance + new Vector3(0, 0, OffsetZ));
                 _lineRenderer.enabled = true;
             }
         }

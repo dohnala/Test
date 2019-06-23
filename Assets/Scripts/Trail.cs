@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class Trail : MonoBehaviour
 {
+    private const float OffsetZ = -5;
+    
     public Color colorStart;
     public Color colorEnd;
     public float widthStart;
     public float widthEnd;
     public float randomPlace;
     public int fragments = 20;
+    public string sortingLayer;
 
     private LineRenderer _mLine;
 
@@ -22,6 +25,11 @@ public class Trail : MonoBehaviour
         _mLine.positionCount = fragments;
         _mLine.startWidth = widthEnd;
         _mLine.endWidth = widthStart;
+
+        if (sortingLayer != null)
+        {
+            _mLine.sortingLayerName = sortingLayer;
+        }
 
         for (var i = 0; i < _mLine.positionCount; i++)
         {
