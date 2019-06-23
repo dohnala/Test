@@ -28,17 +28,22 @@ public class Object : MonoBehaviourPun
 
     private void OnDiedInternal()
     {
-        if (photonView.IsMine || (photonView.IsSceneView && PhotonNetwork.IsMasterClient))
+        if (destroyEffect != null)
         {
-            OnDied();
+            photonView.RPC("DestroyObject", RpcTarget.All);
         }
     }
 
-    private void OnDestroy()
+    [PunRPC]
+    public void DestroyObject()
     {
-        if (destroyEffect != null && (photonView.IsOwnerActive || photonView.IsSceneView))
+        gameObject.SetActive(false);
+        
+        Instantiate(destroyEffect, gameObject.transform.position, Quaternion.identity);    
+        
+        if (photonView.IsMine || (photonView.IsSceneView && PhotonNetwork.IsMasterClient))
         {
-            Instantiate(destroyEffect, gameObject.transform.position, Quaternion.identity);
+            OnDied();
         }
     }
 }
