@@ -39,5 +39,7 @@ MonoBehaviour:
   - TakeDamage
   - CreateShieldEffect
   - DestroyObject
+  - CreateShieldHiEffect
+  - CreateShieldHitEffect
   DisableAutoOpenWizard: 1
   ShowSettings: 1

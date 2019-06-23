@@ -44,7 +44,7 @@ Transform:
   - {fileID: 8987033746736568223}
   - {fileID: 5079956155406587773}
   - {fileID: 4285986041971699076}
-  - {fileID: 1321724077473137728}
+  - {fileID: 1321724077473137780}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   spriteEnemy: {fileID: 104}
   minimapIconMe: {fileID: 1880028651166473335}
   minimapIconEnemy: {fileID: 8712024545431355762}
-  shipHUD: {fileID: 1321724077473137621}
+  shipHUD: {fileID: 1321724077473137657}
 --- !u!114 &538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,7 +618,9 @@ MonoBehaviour:
   startStacks: 4
   maxStacks: 4
   refreshStackTime: 3
-  shieldEffect: {fileID: 4555305017389123228, guid: ff028c001a4f8ad4682fa3062355a54b,
+  shieldEffect: {fileID: 1824229248349317295, guid: ff028c001a4f8ad4682fa3062355a54b,
+    type: 3}
+  shieldHitEffect: {fileID: 1708579713355959422, guid: 98984226215184fe4bdfc4bfffdb9662,
     type: 3}
 --- !u!1 &4005751283523825995
 GameObject:
@@ -1193,13 +1195,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ae776fb54b654548b99d43e2a2768df, type: 3}
---- !u!224 &1321724077473137728 stripped
+--- !u!224 &1321724077473137780 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3106820152855812491, guid: 7ae776fb54b654548b99d43e2a2768df,
     type: 3}
   m_PrefabInstance: {fileID: 1321724077473138648}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1321724077473137621 stripped
+--- !u!114 &1321724077473137657 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6581094820484775386, guid: 7ae776fb54b654548b99d43e2a2768df,
     type: 3}
