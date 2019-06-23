@@ -20,7 +20,6 @@ namespace UI
 
                 if (health != null)
                 {
-                    healthBar.SetActive(true);
                     healthBar.SetValue((float) Math.Round(health.CurrentHealth / health.MaxHealth, 2));
                 }
                 
@@ -28,9 +27,13 @@ namespace UI
 
                 if (shield != null)
                 {
-                    shieldBar.SetActive(true);
                     shieldBar.SetValue((float) Math.Round(shield.CurrentStacks / shield.MaxStacks, 2));
                 }
+            }
+            else
+            {
+                healthBar.SetValue(0f);   
+                shieldBar.SetValue(0f);
             }
 
             stats.text = $"FPS: {GameManager.GetFPS()} Ping: {GameManager.GetPing()}ms";
