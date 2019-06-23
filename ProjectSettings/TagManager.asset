@@ -48,6 +48,9 @@ TagManager:
   - name: Objects
     uniqueID: 1111881281
     locked: 0
+  - name: Weapons
+    uniqueID: 4005077497
+    locked: 0
   - name: Effects
     uniqueID: 1995706187
     locked: 0

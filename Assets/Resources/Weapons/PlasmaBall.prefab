@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -289889799
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 46fa0ddbfe2cffe468a5899d64aa6895, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -158,6 +158,7 @@ MonoBehaviour:
   widthEnd: 0
   randomPlace: 0.1
   fragments: 50
+  sortingLayer: Effect
 --- !u!198 &6456103292912049699
 ParticleSystem:
   m_ObjectHideFlags: 0

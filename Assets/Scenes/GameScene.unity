@@ -157,7 +157,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.18867922, g: 0.17532927, b: 0.17532927, a: 0.78431372}
+  m_BackGroundColor: {r: 0.18867922, g: 0.17532927, b: 0.17532927, a: 0.78431374}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -515,7 +515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 587910422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1392,6 +1392,7 @@ MonoBehaviour:
   canvas: {fileID: 1688177344}
   damageText: {fileID: 3098059033104481161, guid: 6e3be9763d686415da4c37d47deda48c,
     type: 3}
+  damageTextOffset: {x: 0.3, y: 0.3}
 --- !u!4 &2088400131
 Transform:
   m_ObjectHideFlags: 0
