@@ -1,8 +1,9 @@
 ﻿using System;
 using Photon.Pun;
+using UI;
 using UnityEngine;
 
-public class Health : MonoBehaviour, IPunObservable, IDamageable
+public class Health : MonoBehaviourPun, IPunObservable, IDamageable
 {
     public delegate void OnDied();
 
@@ -25,10 +26,18 @@ public class Health : MonoBehaviour, IPunObservable, IDamageable
     {
         CurrentHealth = startHealth;
     }
-    
-    public void TakeDamage(float damage, Vector2 position)
+
+    public void TakeDamage(float damage, PhotonView source, Vector2 position)
     {
-        CurrentHealth -= damage;
+        if (photonView.IsMine || (photonView.IsSceneView && PhotonNetwork.IsMasterClient))
+        {
+            CurrentHealth -= damage;    
+        }
+
+        if (source.IsMine)
+        {
+            FloatingTextManager.Instance.CreateDamageText(damage, position);    
+        }
     }
 
     private void SetHealth(float health)

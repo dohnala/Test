@@ -51,13 +51,16 @@ public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
         _collider.isTrigger = true;
     }
 
-    public void TakeDamage(float damage, Vector2 point)
+    public void TakeDamage(float damage, PhotonView source, Vector2 point)
     {
-        if (CurrentStacks > 0)
+        if (photonView.IsMine || (photonView.IsSceneView && PhotonNetwork.IsMasterClient))
         {
-            CurrentStacks -= 1;
+            if (CurrentStacks > 0)
+            {
+                CurrentStacks -= 1;
 
-            photonView.RPC("CreateShieldEffect", RpcTarget.All, point);    
+                photonView.RPC("CreateShieldEffect", RpcTarget.All, point);    
+            }  
         }
     }
 

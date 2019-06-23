@@ -86,12 +86,9 @@ namespace Weapons
 
                     _timeSinceLastTick = rest;
                     
-                    if (CanHandleCollision(_currentTarget))
-                    {
-                        var damageable = _currentTarget.GetComponent<IDamageable>();
+                    var damageable = _currentTarget.GetComponent<IDamageable>();
 
-                        damageable?.TakeDamage(ticks * damagePerTick, hit.point);
-                    }   
+                    damageable?.TakeDamage(ticks * damagePerTick, _ownerPhotonView, hit.point);
                 }
             }
             else
