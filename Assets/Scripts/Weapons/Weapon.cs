@@ -7,7 +7,9 @@ namespace Weapons
     {
         public Transform SpawnPoint { get; set; }
 
-        private GameObject _owner;
+        protected GameObject _owner;
+
+        protected PhotonView _ownerPhotonView;
 
         public GameObject Owner
         {
@@ -18,6 +20,7 @@ namespace Weapons
         protected virtual void SetOwner(GameObject owner)
         {
             _owner = owner;
+            _ownerPhotonView = _owner.GetComponent<PhotonView>();
         }
         
         protected bool IsCollisionWithOwner(GameObject other)

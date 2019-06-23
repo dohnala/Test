@@ -34,12 +34,9 @@ namespace Weapons
             // ignore collision with owner
             if (IsCollisionWithOwner(other.gameObject)) return;
             
-            if (CanHandleCollision(other.gameObject))
-            {
-                var damageable = other.GetComponent<IDamageable>();
+            var damageable = other.GetComponent<IDamageable>();
 
-                damageable?.TakeDamage(damage, gameObject.transform.position);
-            }
+            damageable?.TakeDamage(damage, _ownerPhotonView, gameObject.transform.position);
 
             Destroy(gameObject);
         }
