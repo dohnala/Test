@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8674754327505378785}
   - component: {fileID: 8674754327505378786}
   - component: {fileID: 2315154982184598052}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: HeatSeekingRocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,9 +133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22588215408b541a2addff402955b371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passShield: 1
+  damageShield: 0
   speed: 7
   duration: 2
-  damage: 50
+  damage: 1
   collisionEffect: {fileID: 2550604688142557307, guid: 8b854c2fd43124159ace7566f369cf72,
     type: 3}
   angularSpeed: 150

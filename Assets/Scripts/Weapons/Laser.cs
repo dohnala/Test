@@ -90,7 +90,7 @@ namespace Weapons
                     
                     var damageable = _currentTarget.GetComponent<IDamageable>();
 
-                    damageable?.TakeDamage(ticks * damagePerTick, _ownerPhotonView, hit.point);
+                    damageable?.TakeDamage(ticks * damagePerTick, this, _ownerPhotonView, hit.point);
                 }
             }
             else

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6456103292912049699}
   - component: {fileID: 5771472576352148555}
   - component: {fileID: 9051888769351727372}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: PlasmaBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,9 +135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689d41a878279479eabc5dc4a7951ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passShield: 0
+  damageShield: 1
   speed: 4
   duration: 2
-  damage: 200
+  damage: 2
   collisionEffect: {fileID: 2550604688142557307, guid: 8d9855c41a4c440589ad0b2cd7f8965e,
     type: 3}
 --- !u!114 &8326036730184566682

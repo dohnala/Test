@@ -14,14 +14,14 @@ TagManager:
   - UI
   - 
   - 
-  - Object
-  - Rocket
   - Background
+  - Object
   - Shield
-  - Explosion
+  - Effect
   - Minimap
-  - 
-  - 
+  - Rocket
+  - Plasma
+  - Laser
   - 
   - 
   - 

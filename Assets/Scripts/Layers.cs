@@ -1,5 +1,5 @@
 public class Layers
 {
-    public static int OBJECT = 8;
-    public static int SHIELD = 11;
+    public const int Object = 9;
+    public const int Shield = 10;
 }

@@ -178,7 +178,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 4096
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: faa03d2d1f33f4667be037a92f05f102, type: 2}
   m_TargetDisplay: 0
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 382577741}
   - component: {fileID: 382577740}
   - component: {fileID: 382577739}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: ice-small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 7991
+    m_Bits: 61239
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -884,7 +884,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1635922420}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -919,7 +919,7 @@ GameObject:
   - component: {fileID: 1646607862}
   - component: {fileID: 1646607861}
   - component: {fileID: 1646607860}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: lava-small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1216,7 +1216,7 @@ GameObject:
   - component: {fileID: 1871584462}
   - component: {fileID: 1871584461}
   - component: {fileID: 1871584460}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: nebula
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -36,7 +36,7 @@ namespace Weapons
             
             var damageable = other.GetComponent<IDamageable>();
 
-            damageable?.TakeDamage(damage, _ownerPhotonView, gameObject.transform.position);
+            damageable?.TakeDamage(damage, this,_ownerPhotonView, gameObject.transform.position);
 
             Destroy(gameObject);
         }
