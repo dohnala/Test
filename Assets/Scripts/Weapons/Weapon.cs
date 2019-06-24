@@ -5,6 +5,12 @@ namespace Weapons
 {
     public class Weapon : MonoBehaviour
     {
+        [Tooltip("Check whether a weapon passes through the shield")]
+        public bool passShield;
+
+        [Tooltip("Check whether a weapon damages the shield")]
+        public bool damageShield;
+        
         public Transform SpawnPoint { get; set; }
 
         protected GameObject _owner;

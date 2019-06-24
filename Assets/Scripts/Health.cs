@@ -2,6 +2,7 @@
 using Photon.Pun;
 using UI;
 using UnityEngine;
+using Weapons;
 
 public class Health : MonoBehaviourPun, IPunObservable, IDamageable
 {
@@ -27,7 +28,7 @@ public class Health : MonoBehaviourPun, IPunObservable, IDamageable
         CurrentHealth = startHealth;
     }
 
-    public void TakeDamage(float damage, PhotonView source, Vector2 position)
+    public void TakeDamage(float damage, Weapon weapon, PhotonView source, Vector2 position)
     {
         if (photonView.IsMine || (photonView.IsSceneView && PhotonNetwork.IsMasterClient))
         {

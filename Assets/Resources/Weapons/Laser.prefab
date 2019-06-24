@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2181732114163114848}
   - component: {fileID: 1807381818292190109}
   - component: {fileID: 905750679448421856}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,10 +139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c3f515633e628f47b6e97db863948cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passShield: 0
+  damageShield: 0
   maxDistance: 10
   duration: 2
   collisionEffect: {fileID: 2519212218373330148, guid: 2db99e7df726ed24ab7432ba3ae3d1c6,
     type: 3}
   collisionEffectDuration: 2
   ticksPerSecond: 4
-  damagePerTick: 50
+  damagePerTick: 5

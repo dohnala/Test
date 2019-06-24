@@ -60,7 +60,7 @@ namespace Weapons
             {
                 if (Input.GetKeyDown(key))
                 {
-                    photonView.RPC("SwitchWeapon", RpcTarget.All, key);
+                    photonView.RPC("SwitchWeapon", RpcTarget.AllBuffered, key);
                 }
             }
         }
@@ -96,6 +96,12 @@ namespace Weapons
                     {
                         Physics2D.IgnoreCollision(weaponCollider, shipCollider.GetComponent<Collider2D>());  
                     }    
+                }
+                
+                // ignore collision with shield
+                if (weapon.GetComponent<Weapon>().passShield)
+                {
+                    Physics2D.IgnoreLayerCollision(weapon.layer, Layers.Shield);
                 }
             }
         }

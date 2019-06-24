@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Photon.Pun;
 using UnityEngine;
+using Weapons;
 
 public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
 {
@@ -44,10 +45,10 @@ public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
 
     private void Start()
     {
+        CreateShieldEffect();
+        
         if (photonView.IsMine)
         {
-            photonView.RPC("CreateShieldEffect", RpcTarget.All);    
-            
             StartCoroutine(RefreshStacks());    
         }
     }
@@ -65,14 +66,17 @@ public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
         _collider.isTrigger = true;
     }
 
-    public void TakeDamage(float damage, PhotonView source, Vector2 point)
+    public void TakeDamage(float damage, Weapon weapon, PhotonView source, Vector2 point)
     {
         if (photonView.IsMine || (photonView.IsSceneView && PhotonNetwork.IsMasterClient))
         {
             if (CurrentStacks > 0)
             {
-                CurrentStacks -= 1;
-                    
+                if (weapon.damageShield)
+                {
+                    CurrentStacks -= 1;
+                }
+
                 photonView.RPC("CreateShieldHitEffect", RpcTarget.All, point);    
             }  
         }
@@ -83,7 +87,6 @@ public class Shield : MonoBehaviourPun, IPunObservable, IDamageable, IHasOwner
         return transform.parent.gameObject;
     }
 
-    [PunRPC]
     public void CreateShieldEffect()
     {
         if (shieldEffect != null)
