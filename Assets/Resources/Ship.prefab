@@ -44,7 +44,7 @@ Transform:
   - {fileID: 8987033746736568223}
   - {fileID: 5079956155406587773}
   - {fileID: 4285986041971699076}
-  - {fileID: 1321724077473137737}
+  - {fileID: 1321724077473137830}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   spriteEnemy: {fileID: 104}
   minimapIconMe: {fileID: 1880028651166473335}
   minimapIconEnemy: {fileID: 8712024545431355762}
-  shipHUD: {fileID: 1321724077473137630}
+  shipHUD: {fileID: 1321724077473137709}
 --- !u!114 &538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +217,12 @@ MonoBehaviour:
     spawnPoints:
     - {fileID: 4545118131265794304}
     - {fileID: 1888936831125431578}
+  - key: 116
+    weapon: {fileID: 8601377223392001558, guid: 71cc0b7ca52d64735820f5950a367397,
+      type: 3}
+    spawnPoints:
+    - {fileID: 3602319663387463733}
+    - {fileID: 7374238028256686135}
   fireKey: 32
   shipColliders:
   - {fileID: 101}
@@ -1289,13 +1295,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ae776fb54b654548b99d43e2a2768df, type: 3}
---- !u!224 &1321724077473137737 stripped
+--- !u!224 &1321724077473137830 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3106820152855812491, guid: 7ae776fb54b654548b99d43e2a2768df,
     type: 3}
   m_PrefabInstance: {fileID: 1321724077473138648}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1321724077473137630 stripped
+--- !u!114 &1321724077473137709 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6581094820484775386, guid: 7ae776fb54b654548b99d43e2a2768df,
     type: 3}
