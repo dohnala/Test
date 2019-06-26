@@ -7,7 +7,6 @@ namespace Weapons
         public float speed = 5;
         public float duration = 2;
         public float damage = 50;
-        public GameObject collisionEffect;
 
         protected Rigidbody2D _rigidbody2D;
         protected Vector2 _ownerVelocity;
