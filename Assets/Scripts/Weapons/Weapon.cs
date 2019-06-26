@@ -11,6 +11,9 @@ namespace Weapons
         [Tooltip("Check whether a weapon damages the shield")]
         public bool damageShield;
         
+        [Tooltip("Effect which should be spawned on collision")]
+        public GameObject collisionEffect;
+        
         public Transform SpawnPoint { get; set; }
 
         protected GameObject _owner;

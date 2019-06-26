@@ -143,7 +143,7 @@ MonoBehaviour:
   damageShield: 0
   maxDistance: 10
   duration: 2
-  collisionEffect: {fileID: 2519212218373330148, guid: 2db99e7df726ed24ab7432ba3ae3d1c6,
+  collisionEffect: {fileID: 5761306092705364509, guid: 069798ad3a5674ac8954ef3fc834d3aa,
     type: 3}
   collisionEffectDuration: 2
   ticksPerSecond: 4
