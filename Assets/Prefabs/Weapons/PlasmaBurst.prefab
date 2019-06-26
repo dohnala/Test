@@ -134,10 +134,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passShield: 0
   damageShield: 1
+  collisionEffect: {fileID: 4750247930493249510, guid: fe8f186f0187b447cbc6931ee8f21335,
+    type: 3}
   speed: 10
   duration: 1
   damage: 1
-  collisionEffect: {fileID: 0}
 --- !u!114 &1342396658410661279
 MonoBehaviour:
   m_ObjectHideFlags: 0
